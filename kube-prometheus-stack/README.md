@@ -4,7 +4,8 @@
 
 🧭 Step-by-Step Installation of kube_prometheus_stack with sub path  
 
-🧰 Step 1: Add kube-prometheus-stack Repo
+🧰 Step 1: Add kube-prometheus-stack Repo  
+
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
