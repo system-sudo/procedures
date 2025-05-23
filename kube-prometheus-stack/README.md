@@ -22,10 +22,11 @@ helm install monitoring prometheus-community/kube-prometheus-stack \
 
 ✅ 3. Access the Services
 Once everything is deployed:  
-change elb DNS Name
-•	Grafana:
-http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana
-•	Prometheus:
-http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/prometheus
-•	Alertmanager:
+change elb DNS Name  
+
+•	Grafana:  
+  http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana
+•	Prometheus:  
+  http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/prometheus  
+•	Alertmanager:  
 http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/alert
