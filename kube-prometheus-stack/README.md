@@ -10,7 +10,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 custom_kube_prometheus_stack.yml is in the repo  
-https://github.com/system-sudo/procedures/blob/main/kube-prometheus-stack/custom_kube_prometheus_stack.yaml
+Link https://github.com/system-sudo/procedures/blob/main/kube-prometheus-stack/custom_kube_prometheus_stack.yaml
 
 🧰 Step 2: Install kube-prometheus-stack by passing Custom Values  
 ```bash
