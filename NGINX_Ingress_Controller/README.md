@@ -1,4 +1,4 @@
-**Install Helm is not already Installed**
+**Install Helm if not already Installed**
 
 https://helm.sh/docs/intro/install/
 
