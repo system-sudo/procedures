@@ -9,11 +9,14 @@
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 ```
-custom_kube_prometheus_stack.yml is in the repo
+custom_kube_prometheus_stack.yml is in the repo  
+https://github.com/system-sudo/procedures/blob/main/kube-prometheus-stack/custom_kube_prometheus_stack.yaml
 
-🧰 Step 2: Install kube-prometheus-stack by passing Custom Values
+🧰 Step 2: Install kube-prometheus-stack by passing Custom Values  
+```bash
 helm install monitoring prometheus-community/kube-prometheus-stack \
   -n monitoring \
   --create-namespace \
   -f ./custom_kube_prometheus_stack.yaml
+```
 
