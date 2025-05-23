@@ -1,2 +1,17 @@
+#Prerequisites
 **Install Helm and NGINX_Ingress_Controller**  
-[NGINX_Ingress_Controller/README.md](https://github.com/system-sudo/procedures/blob/main/NGINX_Ingress_Controller/README.md)
+[NGINX_Ingress_Controller/README.md](https://github.com/system-sudo/procedures/blob/main/NGINX_Ingress_Controller/README.md)  
+
+🧭 Step-by-Step Installation of kube_prometheus_stack with sub path
+🧰 Step 1: Add kube-prometheus-stack Repo
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+custom_kube_prometheus_stack.yml is in the repo
+
+🧰 Step 2: Install kube-prometheus-stack by passing Custom Values
+helm install monitoring prometheus-community/kube-prometheus-stack \
+  -n monitoring \
+  --create-namespace \
+  -f ./custom_kube_prometheus_stack.yaml
+
