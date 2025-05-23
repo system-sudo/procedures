@@ -1,0 +1,50 @@
+grafana:
+  enabled: true
+  grafana.ini:
+    server:
+      root_url: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana/"
+      serve_from_sub_path: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: ""  # <- REMOVE REWRITING ENTIRELY
+    hosts:
+      - afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com
+    paths:
+      - /grafana(/|$)(.*)
+    pathType: Prefix
+
+prometheus:
+  prometheusSpec:
+    externalUrl: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/prometheus/"
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
+    hosts:
+      - afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com
+    paths:
+      - /prometheus(/|$)(.*)
+    pathType: ImplementationSpecific
+
+alertmanager:
+  alertmanagerSpec:
+    externalUrl: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/alert/"
+    alertmanagerConfigSelector:
+      matchLabels:
+        release: monitoring
+    replicas: 2
+    alertmanagerConfigMatcherStrategy:
+      type: None
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
+    hosts:
+      - afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com
+    paths:
+      - /alert(/|$)(.*)
+    pathType: ImplementationSpecific
