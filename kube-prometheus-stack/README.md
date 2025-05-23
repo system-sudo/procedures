@@ -9,7 +9,7 @@ Link https://github.com/system-sudo/procedures/blob/main/NGINX_Ingress_Controlle
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 ```
-custom_kube_prometheus_stack.yml is in the repo  
+custom_kube_prometheus_stack.yml is in the repo ** change elb DNS Name
 Link https://github.com/system-sudo/procedures/blob/main/kube-prometheus-stack/custom_kube_prometheus_stack.yaml
 
 🧰 Step 2: Install kube-prometheus-stack by passing Custom Values  
@@ -20,3 +20,12 @@ helm install monitoring prometheus-community/kube-prometheus-stack \
   -f ./custom_kube_prometheus_stack.yaml
 ```
 
+✅ 3. Access the Services
+Once everything is deployed:  
+change elb DNS Name
+•	Grafana:
+http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana
+•	Prometheus:
+http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/prometheus
+•	Alertmanager:
+http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/alert
