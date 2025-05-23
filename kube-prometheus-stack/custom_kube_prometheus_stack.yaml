@@ -2,7 +2,7 @@ grafana:
   enabled: true
   grafana.ini:
     server:
-      root_url: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana/"
+      root_url: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana/" # Change ELB host to current host in all places.
       serve_from_sub_path: true
   ingress:
     enabled: true
