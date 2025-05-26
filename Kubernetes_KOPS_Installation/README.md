@@ -87,11 +87,10 @@ Use your new access and secret key here
 aws configure
 ```
 
-    you should see a list of all your IAM users here
-    ```bash    
-    aws iam list-users
-    ```
-
+you should see a list of all your IAM users here
+```bash    
+aws iam list-users
+```
 
    export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
    
