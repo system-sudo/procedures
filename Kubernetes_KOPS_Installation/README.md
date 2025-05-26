@@ -71,11 +71,16 @@ The kops user will require the following IAM permissions to function properly: o
    
 
 ## Configure the AWS client to use your new IAM user
-    
-    aws configure            Use your new access and secret key here
-    
-    aws iam list-users       you should see a list of all your IAM users here
 
+    Use your new access and secret key here
+    ```bash
+    aws configure            
+    ```
+
+    you should see a list of all your IAM users here
+```bash    
+    aws iam list-users       
+```
 
 
    export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
@@ -95,9 +100,9 @@ The kops user will require the following IAM permissions to function properly: o
  kops create cluster --zones us-east-1b ${NAME}
  ```
 ### LIST CLUSTER DETAILS
-   ```bash
+```bash
    kops get cluster
-    ```
+```
 ### VALIDATE CLUSTER
   ```bash
   kops validate cluster
