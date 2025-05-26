@@ -20,7 +20,5 @@ for POLICY_ARN in "${POLICIES[@]}"; do
   echo "Attaching $POLICY_ARN"
   aws iam attach-user-policy --user-name "$IAM_USER_NAME" --policy-arn "$POLICY_ARN"
 done
-echo "Creating access key for user..."
-aws iam create-access-key --user-name "$IAM_USER_NAME"
 
 echo "✅ IAM user '$IAM_USER_NAME' created and configured successfully."
