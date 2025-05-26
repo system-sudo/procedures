@@ -82,10 +82,11 @@ The kops user will require the following IAM permissions to function properly: o
     ./FILENAME.sh
 ```
 ## Configure the AWS client to use your new IAM user
-    Use your new access and secret key here
-    ```bash
-    aws configure
-    ```
+Use your new access and secret key here
+```bash
+aws configure
+```
+
     you should see a list of all your IAM users here
     ```bash    
     aws iam list-users
