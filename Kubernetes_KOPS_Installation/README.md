@@ -57,6 +57,19 @@ sudo ./aws/install
    ```bash
    sudo mv ./kubectl /usr/local/bin/kubectl
 ```
+
+## Configure the AWS client to use your new IAM user
+
+```bash
+aws configure
+```
+Use AWS Console to Create new access and secret key and enter it here
+## Configure the AWS client to use your new IAM user
+you should see a list of all your IAM users here
+```bash    
+aws iam list-users
+```
+
 ## SETUP IAM USER (kops access aws resources)
 ### This is the working method for AWS CLI commands. Kindly configure aws-cli packages for your Linux machines.
 
@@ -81,20 +94,6 @@ The kops user will require the following IAM permissions to function properly: o
 ```bash
     ./FILENAME.sh
 ```
-## Configure the AWS client to use your new IAM user
-Use your new access and secret key here
-```bash
-aws configure
-```
-
-you should see a list of all your IAM users here
-```bash    
-aws iam list-users
-```
-
-   export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
-   
-   export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
 
 ## Prepare local environment
