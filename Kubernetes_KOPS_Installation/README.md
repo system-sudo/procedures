@@ -69,18 +69,27 @@ The kops user will require the following IAM permissions to function properly: o
    4. IAMFullAccess
    5. AmazonVPCFullAccess
    
+## Or use the bash script that automates the creation of an IAM user and attaches the specified AWS managed policies:
 
+## VI iamuser.sh ---- use iamuser.sh file from repo
+
+## Make it executable
+```bash
+    chmod +x FILENAME.sh
+```
+## RUN it
+```bash
+    ./FILENAME.sh
+```
 ## Configure the AWS client to use your new IAM user
-
     Use your new access and secret key here
     ```bash
-    aws configure            
+    aws configure
     ```
-
     you should see a list of all your IAM users here
-```bash    
-    aws iam list-users       
-```
+    ```bash    
+    aws iam list-users
+    ```
 
 
    export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
