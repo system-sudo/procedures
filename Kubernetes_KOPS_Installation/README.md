@@ -2,7 +2,6 @@
 
 ![Sample Image](https://drive.google.com/uc?export=view&id=174hu4SZa1pCvQFPm3O0l3TRctWta-oWX)
 
- 
 
 ## REQUIREMENTS
 1. Linux machine (ubuntu)
@@ -58,18 +57,6 @@ sudo ./aws/install
    sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
-## Configure the AWS client to use your new IAM user
-
-```bash
-aws configure
-```
-Use AWS Console to Create new access and secret key and enter it here
-## Configure the AWS client to use your new IAM user
-you should see a list of all your IAM users here
-```bash    
-aws iam list-users
-```
-
 ## SETUP IAM USER (kops access aws resources)
 ### This is the working method for AWS CLI commands. Kindly configure aws-cli packages for your Linux machines.
 
@@ -81,20 +68,23 @@ The kops user will require the following IAM permissions to function properly: o
    3. AmazonS3FullAccess
    4. IAMFullAccess
    5. AmazonVPCFullAccess
-   
-## Or use the bash script that automates the creation of an IAM user and attaches the specified AWS managed policies:
 
-## VI iamuser.sh ---- use iamuser.sh file from repo
+Use AWS Console to Create a IAM User with new access and secret key and enter it here
+## Configure the AWS client to use your new IAM user
 
-## Make it executable
 ```bash
-    chmod +x FILENAME.sh
+aws configure
 ```
-## RUN it
-```bash
-    ./FILENAME.sh
+Create a S3 Bucket for etcd Storage in AWS Console
+## Verify AWS client
+you should see a list of all your S3 Buckets
+```bash    
+aws s3 ls
 ```
-
+you should see a list of all your IAM users here
+```bash    
+aws iam list-users
+```
 
 ## Prepare local environment
 
@@ -118,4 +108,22 @@ The kops user will require the following IAM permissions to function properly: o
  ### DELETE CLUSTER 
  ```bash
  kops delete cluster --name=sq1.k8s.local --state=s3://bucket-name --yes
+```
+
+## Source:  
+Kops Installation  
+https://www.youtube.com/watch?v=f6vv4RkkjG4  
+https://github.com/Venkateshd279/Kubernetes/tree/main/Day%202  
+
+## Or use the bash script that automates the creation of an IAM user and attaches the specified AWS managed policies:
+
+## VI iamuser.sh ---- use iamuser.sh file from repo
+
+## Make it executable
+```bash
+    chmod +x FILENAME.sh
+```
+## RUN it
+```bash
+    ./FILENAME.sh
 ```
