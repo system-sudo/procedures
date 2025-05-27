@@ -113,17 +113,4 @@ aws iam list-users
 ## Source:  
 Kops Installation  
 https://www.youtube.com/watch?v=f6vv4RkkjG4  
-https://github.com/Venkateshd279/Kubernetes/tree/main/Day%202  
-
-## Or use the bash script that automates the creation of an IAM user and attaches the specified AWS managed policies:
-
-## VI iamuser.sh ---- use iamuser.sh file from repo
-
-## Make it executable
-```bash
-    chmod +x FILENAME.sh
-```
-## RUN it
-```bash
-    ./FILENAME.sh
-```
+https://github.com/Venkateshd279/Kubernetes/tree/main/Day%202
