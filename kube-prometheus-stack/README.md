@@ -29,7 +29,14 @@ change elb DNS Name
 
 •	Grafana:  
   http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana  
-  
+
+## To get the Grafana admin password after installing the Kube Prometheus Stack via Helm, follow these steps: Usally the Password is : prom-operator
+```bash
+kubectl get secret -n monitoring
+```
+```bash
+kubectl get secret monitoring-grafana -n monitoring -o jsonpath="{.data.admin-password}" | base64 --decode
+```
 •	Prometheus:  
   http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/prometheus  
     
