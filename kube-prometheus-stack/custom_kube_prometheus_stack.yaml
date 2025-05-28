@@ -2,7 +2,7 @@ grafana:
   enabled: true
   grafana.ini:
     server:
-      root_url: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/grafana/" # Change ELB host to current host in all places.
+      root_url: "http://a5c9bc89412fd4ae383aac6de65d3fc3-2e300aff05e97e0f.elb.us-east-1.amazonaws.com/grafana/" # Change ELB host to current host in all 6 places.
       serve_from_sub_path: true
   ingress:
     enabled: true
@@ -10,28 +10,28 @@ grafana:
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: ""  # <- REMOVE REWRITING ENTIRELY
     hosts:
-      - afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com
+      - a5c9bc89412fd4ae383aac6de65d3fc3-2e300aff05e97e0f.elb.us-east-1.amazonaws.com
     paths:
       - /grafana(/|$)(.*)
     pathType: Prefix
 
 prometheus:
   prometheusSpec:
-    externalUrl: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/prometheus/"
+    externalUrl: "http://a5c9bc89412fd4ae383aac6de65d3fc3-2e300aff05e97e0f.elb.us-east-1.amazonaws.com/prometheus/"
   ingress:
     enabled: true
     ingressClassName: nginx
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /$2
     hosts:
-      - afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com
+      - a5c9bc89412fd4ae383aac6de65d3fc3-2e300aff05e97e0f.elb.us-east-1.amazonaws.com
     paths:
       - /prometheus(/|$)(.*)
     pathType: ImplementationSpecific
 
 alertmanager:
   alertmanagerSpec:
-    externalUrl: "http://afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com/alert/"
+    externalUrl: "http://a5c9bc89412fd4ae383aac6de65d3fc3-2e300aff05e97e0f.elb.us-east-1.amazonaws.com/alert/"
     alertmanagerConfigSelector:
       matchLabels:
         release: monitoring
@@ -44,7 +44,7 @@ alertmanager:
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /$2
     hosts:
-      - afc0d7ef8e4864ede924ae05195de1fd-e9e1bd8396e3c2a1.elb.us-east-1.amazonaws.com
+      - a5c9bc89412fd4ae383aac6de65d3fc3-2e300aff05e97e0f.elb.us-east-1.amazonaws.com
     paths:
       - /alert(/|$)(.*)
     pathType: ImplementationSpecific
