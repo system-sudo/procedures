@@ -115,7 +115,10 @@ aws iam list-users
 ```bash 
 kops edit ig --name=sq1.k8s.local control-plane-us-east-1b
 ```
-
+ * Finally configure your cluster with:
+```bash
+kops update cluster --name sq1.k8s.local --yes --admin
+```
  ### DELETE CLUSTER 
  ```bash
  kops delete cluster --name=sq1.k8s.local --state=s3://bucket-name --yes
