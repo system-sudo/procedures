@@ -97,14 +97,25 @@ aws iam list-users
  ```bash
  kops create cluster --zones us-east-1b ${NAME}
  ```
-### LIST CLUSTER DETAILS
+
+### Suggestions:
+ * list clusters with:
 ```bash
    kops get cluster
 ```
-### VALIDATE CLUSTER
-  ```bash
-  kops validate cluster
+ * edit this cluster with:
+```bash
+   kops edit cluster sq1.k8s.local
 ```
+ * edit your node instance group:
+```bash   
+   kops edit ig --name=sq1.k8s.local nodes-us-east-1b
+```
+ * edit your control-plane instance group:
+```bash 
+kops edit ig --name=sq1.k8s.local control-plane-us-east-1b
+```
+
  ### DELETE CLUSTER 
  ```bash
  kops delete cluster --name=sq1.k8s.local --state=s3://bucket-name --yes
