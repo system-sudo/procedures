@@ -20,7 +20,9 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 kubectl get all -n ingress-nginx
 ```
 Look for a LoadBalancer service named ingress-nginx-controller. The EXTERNAL-IP or HOSTNAME is what you'll use in your Ingress host field.
-
+```bash
+kubectl get service/ingress-nginx-controller -n ingress-nginx
+```
 ## 4. To uninstall the ingress-nginx Ingress Controller
 ```bash
 helm uninstall ingress-nginx --namespace ingress-nginx
