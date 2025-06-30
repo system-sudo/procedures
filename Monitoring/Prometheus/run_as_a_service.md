@@ -35,6 +35,7 @@ sudo chown prometheus:prometheus /usr/local/bin/prometheus /usr/local/bin/promto
 sudo cp prometheus/prometheus.yml /etc/prometheus/
 sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
 ```
+Prometheus yaml file is at /etc/prometheus
 ### 📄 4. Create the Prometheus Service File
 Create the file:
 ```sh
