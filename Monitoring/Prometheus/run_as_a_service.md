@@ -4,7 +4,6 @@
 ```sh
 sudo apt update -y
 ```
-or
 
 ## Download the latest prometheus  
 https://prometheus.io/download/  
