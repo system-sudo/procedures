@@ -1,57 +1,61 @@
-:red_square: __Prometheus installation on Ubuntu Linux__
+# :red_square: __Prometheus installation on Ubuntu Linux__
  
-for ubuntu
+## Update the System
 ```sh
 sudo apt update -y
 ```
 or
 
-# Download the latest prometheus  
-## https://prometheus.io/download/  
+## Download the latest prometheus  
+https://prometheus.io/download/  
 or
 ```sh
 wget https://github.com/prometheus/prometheus/releases/download/v3.4.2/prometheus-3.4.2.linux-amd64.tar.gz
 ```
+
 ```sh 
 tar -xvf prometheus-3.4.2.linux-amd64.tar.gz
 ```
-# rename the prometheus-3.4.2.linux-amd64 to shorter name as prometheus
+
+### rename the prometheus-3.4.2.linux-amd64 to shorter name as prometheus
+```sh
+mv prometheus-3.4.2.linux-amd64 prometheus
 ```
-# mv prometheus-3.4.2.linux-amd64 prometheus
+### Add a Prometheus user
+```sh
+useradd --no-create-home --shell /bin/false prometheus
 ```
-Add a Prometheus user
+### create necessary directories
+```sh
+sudo mkdir /etc/prometheus
+sudo mkdir /var/lib/prometheus
+groupadd prometheus
 ```
-# useradd --no-create-home --shell /bin/false prometheus
+### Change the owner of the above directories
+```sh
+chown prometheus:prometheus /etc/prometheus
+chown prometheus:prometheus /var/lib/prometheus
 ```
-create necessary directories
+### Copy prometheus and promtool binary from prometheus folder to /usr/local/bin and change the ownership to prometheus user
+```sh
+cp prometheus/prometheus /usr/local/bin/
+cp prometheus/promtool /usr/local/bin/
+chown prometheus:prometheus /usr/local/bin/prometheus
+chown prometheus:prometheus /usr/local/bin/promtool
 ```
-# mkdir /etc/prometheus
-# mkdir /var/lib/prometheus
-# groupadd prometheus
+### Move the consoles and console_libraries directories from prometheus-files to /etc/prometheus folder and change the ownership to prometheus user
+```sh
+cp -r prometheus-files/consoles /etc/prometheus
+cp -r prometheus-files/console_libraries /etc/prometheus
+chown -R prometheus:prometheus /etc/prometheus/consoles
+chown -R prometheus:prometheus /etc/prometheus/console_libraries
 ```
-Change the owner of the above directories
+### Setup Prometheus Configuration
+#### Create the prometheus.yml file.
+```sh
+vim /etc/prometheus/prometheus.yml
 ```
-# chown prometheus:prometheus /etc/prometheus
-# chown prometheus:prometheus /var/lib/prometheus
-```
-Copy prometheus and promtool binary from prometheus-files folder to /usr/local/bin and change the ownership to prometheus user
-```
-# cp prometheus-files/prometheus /usr/local/bin/
-# cp prometheus-files/promtool /usr/local/bin/
-# chown prometheus:prometheus /usr/local/bin/prometheus
-# chown prometheus:prometheus /usr/local/bin/promtool
-```
-Move the consoles and console_libraries directories from prometheus-files to /etc/prometheus folder and change the ownership to prometheus user
-```
-# cp -r prometheus-files/consoles /etc/prometheus
-# cp -r prometheus-files/console_libraries /etc/prometheus
-# chown -R prometheus:prometheus /etc/prometheus/consoles
-# chown -R prometheus:prometheus /etc/prometheus/console_libraries
-```
-Setup Prometheus Configuration
-Create the prometheus.yml file.
-```
-# vim /etc/prometheus/prometheus.yml
+```sh
 global:
   scrape_interval: 10s
  
@@ -78,8 +82,8 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['15.207.139.147:9100']
- 
-:wq! save and exit
+```
+
 ```
 Change the ownership of the file to prometheus user
 ```
