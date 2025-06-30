@@ -1,24 +1,23 @@
-:red_square: __Prometheus installation on Centos/Ubuntu Linux__
+:red_square: __Prometheus installation on Ubuntu Linux__
  
 for ubuntu
-```
-apt update -y
+```sh
+sudo apt update -y
 ```
 or
- 
-for centos
+
+Download the latest prometheus  
+# https://prometheus.io/download/  
+or
+```sh
+wget https://github.com/prometheus/prometheus/releases/download/v3.4.2/prometheus-3.4.2.linux-amd64.tar.gz
 ```
-#  yum update -y
+```sh 
+tar -xvf prometheus-3.4.2.linux-amd64.tar.gz
 ```
-Download the latest prometheus
+# rename the prometheus-3.4.2.linux-amd64 to shorter name as prometheus
 ```
-# wget https://github.com/prometheus/prometheus/releases/download/v2.44.0/prometheus-2.44.0.linux-amd64.tar.gz
- 
-# tar -xvf prometheus-2.44.0.linux-amd64.tar.gz
-```
-rename the prometheus-2.44.0.linux-amd64 to prometheus-files
-```
-# mv prometheus-2.44.0.linux-amd64 prometheus-files
+# mv prometheus-3.4.2.linux-amd64 prometheus
 ```
 Add a Prometheus user
 ```
