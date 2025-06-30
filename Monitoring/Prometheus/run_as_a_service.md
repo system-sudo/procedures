@@ -11,7 +11,7 @@ wget https://github.com/prometheus/prometheus/releases/download/v3.4.2/prometheu
 ```sh
 tar -xvf prometheus-3.4.2.linux-amd64.tar.gz
 ```
-#### rename the prometheus-3.4.2.linux-amd64.tar.gz to prometheus
+#### rename the prometheus-3.4.2.linux-amd64 to a shorter name - prometheus
 ```sh
 mv prometheus-3.4.2.linux-amd64 prometheus
 ```
