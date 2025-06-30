@@ -44,8 +44,8 @@ chown prometheus:prometheus /usr/local/bin/promtool
 ```
 ### Move the consoles and console_libraries directories from prometheus-files to /etc/prometheus folder and change the ownership to prometheus user
 ```sh
-cp -r prometheus-files/consoles /etc/prometheus
-cp -r prometheus-files/console_libraries /etc/prometheus
+cp -r prometheus/consoles /etc/prometheus
+cp -r prometheus/console_libraries /etc/prometheus
 chown -R prometheus:prometheus /etc/prometheus/consoles
 chown -R prometheus:prometheus /etc/prometheus/console_libraries
 ```
@@ -83,16 +83,16 @@ scrape_configs:
       - targets: ['15.207.139.147:9100']
 ```
 
-```
-Change the ownership of the file to prometheus user
-```
-# chown prometheus:prometheus /etc/prometheus/prometheus.yml
+
+### Change the ownership of the file to prometheus user
+```sh
+chown prometheus:prometheus /etc/prometheus/prometheus.yml
 ```
  
-Setup Prometheus Service File
-Create a prometheus service file.
-```
-# vim /etc/systemd/system/prometheus.service
+### Setup Prometheus Service File
+#### Create a prometheus service file.
+```sh
+vim /etc/systemd/system/prometheus.service
 [Unit]
 Description=Prometheus
 Wants=network-online.target
@@ -112,19 +112,13 @@ ExecStart=/usr/local/bin/prometheus \
  
 [Install]
 WantedBy=multi-user.target
- 
-:wq! save and exit
+
+```sh
+systemctl daemon-reload
+systemctl start prometheus
+systemctl enable prometheus
+systemctl status prometheus
 ```
-```
-# systemctl daemon-reload
-# systemctl start prometheus
-# systemctl enable prometheus
-# systemctl status prometheus
-```
-access the prometheus UI on 9090 port
-\
-http://xx.xx.xx.xx:9090/graph
-\
-xx.xx.xx.xx prometheus server ip
+### access the prometheus UI on 9090 port
  
  
