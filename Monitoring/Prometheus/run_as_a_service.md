@@ -2,7 +2,7 @@
  
 for ubuntu
 ```
-# apt update -y
+apt update -y
 ```
 or
  
