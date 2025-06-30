@@ -6,8 +6,8 @@ sudo apt update -y
 ```
 or
 
-Download the latest prometheus  
-# https://prometheus.io/download/  
+# Download the latest prometheus  
+## https://prometheus.io/download/  
 or
 ```sh
 wget https://github.com/prometheus/prometheus/releases/download/v3.4.2/prometheus-3.4.2.linux-amd64.tar.gz
