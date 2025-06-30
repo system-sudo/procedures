@@ -1,124 +1,82 @@
-# :red_square: __Prometheus installation on Ubuntu Linux__
- 
-## Update the System
+## 🛠️ Step-by-Step Guide to Create Prometheus as a Service  
 ```sh
 sudo apt update -y
 ```
-
-## Download the latest prometheus  
-https://prometheus.io/download/  
-or
+### Download the latest prometheus
+at https://prometheus.io/download/
+or for specific version
 ```sh
 wget https://github.com/prometheus/prometheus/releases/download/v3.4.2/prometheus-3.4.2.linux-amd64.tar.gz
 ```
-
-```sh 
+```sh
 tar -xvf prometheus-3.4.2.linux-amd64.tar.gz
 ```
-
-### rename the prometheus-3.4.2.linux-amd64 to shorter name as prometheus
+#### rename the prometheus-3.4.2.linux-amd64.tar.gz to prometheus
 ```sh
 mv prometheus-3.4.2.linux-amd64 prometheus
 ```
-### Add a Prometheus user
+
+### 1. Create Prometheus User and Directories
 ```sh
-useradd --no-create-home --shell /bin/false prometheus
-```
-### create necessary directories
-```sh
+sudo useradd --no-create-home --shell /bin/false prometheus
 sudo mkdir /etc/prometheus
 sudo mkdir /var/lib/prometheus
-groupadd prometheus
-```
-### Change the owner of the above directories
-```sh
-chown prometheus:prometheus /etc/prometheus
-chown prometheus:prometheus /var/lib/prometheus
-```
-### Copy prometheus and promtool binary from prometheus folder to /usr/local/bin and change the ownership to prometheus user
-```sh
-cp prometheus/prometheus /usr/local/bin/
-cp prometheus/promtool /usr/local/bin/
-chown prometheus:prometheus /usr/local/bin/prometheus
-chown prometheus:prometheus /usr/local/bin/promtool
-```
-### Move the consoles and console_libraries directories from prometheus-files to /etc/prometheus folder and change the ownership to prometheus user
-```sh
-cp -r prometheus/consoles /etc/prometheus
-cp -r prometheus/console_libraries /etc/prometheus
-chown -R prometheus:prometheus /etc/prometheus/consoles
-chown -R prometheus:prometheus /etc/prometheus/console_libraries
-```
-### Setup Prometheus Configuration
-#### Create the prometheus.yml file.
-```sh
-vim /etc/prometheus/prometheus.yml
-```
-```sh
-global:
-  scrape_interval: 10s
- 
-scrape_configs:
-  - job_name: 'prometheus'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['localhost:9090']
- 
-  - job_name: 'prometheus_server'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['172.105.63.95:9100']
- 
-  - job_name: 'client_1'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['172.105.63.114:9100']
-  - job_name: 'client_2'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['172.105.63.116:9100']
-  - job_name: 'client_3'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['15.207.139.147:9100']
+sudo chown prometheus:prometheus /etc/prometheus /var/lib/prometheus
 ```
 
-
-### Change the ownership of the file to prometheus user
+### 2. Move Binaries
 ```sh
-chown prometheus:prometheus /etc/prometheus/prometheus.yml
+sudo cp prometheus/prometheus /usr/local/bin/
+sudo cp prometheus/promtool /usr/local/bin/
+sudo chown prometheus:prometheus /usr/local/bin/prometheus /usr/local/bin/promtool
 ```
- 
-### Setup Prometheus Service File
-#### Create a prometheus service file.
+### 3. Move Configuration File
 ```sh
-vim /etc/systemd/system/prometheus.service
+sudo cp prometheus/prometheus.yml /etc/prometheus/
+sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
+```
+### 📄 4. Create the Prometheus Service File
+Create the file:
+```sh
+sudo vim /etc/systemd/system/prometheus.service
+```
+
+#### Paste the following content:
+```sh
 [Unit]
-Description=Prometheus
+Description=Prometheus Monitoring
 Wants=network-online.target
 After=network-online.target
- 
+
 [Service]
 User=prometheus
 Group=prometheus
 Type=simple
 ExecStart=/usr/local/bin/prometheus \
-       --config.file /etc/prometheus/prometheus.yml \
-       --storage.tsdb.path /var/lib/prometheus/ \
-       --storage.tsdb.retention.time=7d \
-       --storage.tsdb.retention.size=8GB \
-       --web.console.templates=/etc/prometheus/consoles \
-       --web.console.libraries=/etc/prometheus/console_libraries
- 
+  --config.file=/etc/prometheus/prometheus.yml \
+  --storage.tsdb.path=/var/lib/prometheus \
+  --storage.tsdb.retention.time=7d \
+  --storage.tsdb.retention.size=8GB
+
 [Install]
 WantedBy=multi-user.target
 
-```sh
-systemctl daemon-reload
-systemctl start prometheus
-systemctl enable prometheus
-systemctl status prometheus
 ```
-### access the prometheus UI on 9090 port
- 
- 
+
+Save and exit (:wq in Vim).
+
+### 🚀 5. Start and Enable Prometheus
+```sh
+sudo systemctl daemon-reload
+sudo systemctl start prometheus
+sudo systemctl enable prometheus
+```
+#### Check status:
+```sh
+sudo systemctl status prometheus
+```
+
+### 🌐 6. Access Prometheus UI
+#### Open your browser and go to:
+
+http://<your-server-ip>:9090
