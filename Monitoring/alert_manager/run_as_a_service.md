@@ -102,6 +102,10 @@ sudo systemctl status alertmanager
 ```
 
 ### 🔗 Step 6: Connect Prometheus to Alertmanager
+```sh
+sudo vim /etc/prometheus/prometheus.yml
+```
+
 Edit your Prometheus config (/etc/prometheus/prometheus.yml) and add:
 ```sh
 alerting:
