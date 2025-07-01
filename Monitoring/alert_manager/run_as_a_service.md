@@ -1,4 +1,4 @@
-## 🛠️ Step-by-Step Guide to Create Prometheus as a Service  
+## 🛠️ Step-by-Step Guide to Create Alertmanager as a Service  
 ```sh
 sudo apt update -y
 ```
@@ -101,7 +101,21 @@ sudo systemctl enable alertmanager
 sudo systemctl status alertmanager
 ```
 
-### 🌐 6. Access Alertmanager UI
+### 🔗 Step 6: Connect Prometheus to Alertmanager
+Edit your Prometheus config (/etc/prometheus/prometheus.yml) and add:
+```sh
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'localhost:9093'
+```
+#### Then reload Prometheus:
+```sh
+sudo systemctl restart prometheus
+```
+
+### 🌐 Step 7: Access Alertmanager UI
 #### Open your browser and go to:
 
 http://<your-server-ip>:9093
