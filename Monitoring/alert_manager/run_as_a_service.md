@@ -112,7 +112,8 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-            - 'localhost:9093'
+            - localhost:9093 # when alertmanager is running in same machine as prometheus
+            - alertmanager:9093 # when alertmanager is running as a service
 ```
 #### Then reload Prometheus:
 ```sh
