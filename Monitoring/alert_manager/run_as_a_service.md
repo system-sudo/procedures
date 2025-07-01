@@ -29,14 +29,14 @@ sudo chown -R alertmanager:alertmanager /etc/alertmanager /var/lib/alertmanager
 ### ⚙️ Step 3: Configure Alertmanager
 
 #### 🔗 Create an Incoming Webhook in Microsoft Teams
-Open Microsoft Teams and go to the channel where you want to receive alerts.
-Click on the three dots (⋯) next to the channel name.
-Select “Connectors”.
-In the search box, type “Incoming Webhook”.
-Click “Configure” next to Incoming Webhook.
-Give your webhook a name (e.g., Prometheus Alerts) and optionally upload an image.
-Click “Create”.
-Copy the Webhook URL that is generated. You’ll use this in your Alertmanager config.
+Open Microsoft Teams and go to the channel where you want to receive alerts.  
+Click on the three dots (⋯) next to the channel name.  
+Select “Connectors”.  
+In the search box, type “Incoming Webhook”.  
+Click “Configure” next to Incoming Webhook.  
+Give your webhook a name (e.g., Prometheus Alerts) and optionally upload an image.  
+Click “Create”.  
+Copy the Webhook URL that is generated. You’ll use this in your Alertmanager config.  
 
 ```sh
 sudo vim /etc/alertmanager/alertmanager.yml
