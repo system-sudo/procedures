@@ -19,14 +19,14 @@ sudo useradd -rs /bin/false node_exporter
 ```
 ### 3️⃣ Move Binary to /usr/local/bin
 ```sh
-sudo cp /opt/node_exporter/node_exporter /usr/local/bin/
+sudo cp ~/node_exporter/node_exporter /usr/local/bin/
 sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 ```
 ### 4️⃣ Create a Systemd Service File
 #### Create the service unit:
 
 ```sh
-sudo nano /etc/systemd/system/node_exporter.service
+sudo vim /etc/systemd/system/node_exporter.service
 ```
 #### Paste the following:
 
@@ -45,6 +45,7 @@ Restart=on-failure
 [Install]
 WantedBy=default.target
 ```
+Save and exit (:wq in Vim).
 ### 5️⃣ Start and Enable Node Exporter
 ```sh
 sudo systemctl daemon-reload
@@ -73,5 +74,6 @@ Edit your Prometheus config (prometheus.yml):
 Then reload Prometheus:
 
 ```sh
-curl -X POST http://localhost:9090/-/reload
+sudo systemctl restart prometheus
+```
 Or restart Prometheus if reload isn’t enabled.
