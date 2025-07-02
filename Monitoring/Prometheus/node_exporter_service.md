@@ -19,7 +19,7 @@ sudo useradd -rs /bin/false node_exporter
 ```
 ### 3️⃣ Move Binary to /usr/local/bin
 ```sh
-sudo cp ~/node_exporter/node_exporter /usr/local/bin/
+sudo mv node_exporter/node_exporter /usr/local/bin/
 sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 ```
 ### 4️⃣ Create a Systemd Service File
