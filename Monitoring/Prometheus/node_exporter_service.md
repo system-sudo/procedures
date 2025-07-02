@@ -71,9 +71,8 @@ Edit your Prometheus config (prometheus.yml):
     static_configs:
       - targets: ['localhost:9100']
 ```
-Then reload Prometheus:
+Then restart Prometheus:
 
 ```sh
 sudo systemctl restart prometheus
 ```
-Or restart Prometheus if reload isn’t enabled.
