@@ -25,12 +25,11 @@ This will give you a public URL like:
 https://abcd1234.ngrok.io
 
 ### 4. Set Up Webhooks (e.g., GitHub)
-In your GitHub repo:
-
-Go to Settings → Webhooks
-Add a new webhook:
-Payload URL: https://abcd1234.ngrok.io/github-webhook/
-Content type: application/json
+In your GitHub repo:  
+Go to Settings → Webhooks  
+Add a new webhook:  
+Payload URL: https://abcd1234.ngrok.io/github-webhook/  
+Content type: application/json  
 Choose events (e.g., push)
 
 ### 5. Configure Jenkins Job
