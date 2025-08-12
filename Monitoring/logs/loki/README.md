@@ -62,3 +62,27 @@ loki.write "slow" {
   }
 }
 ```
+## 6. Logging Alloy startup errors to a file
+Edit the systemd unit override:
+
+```bash
+sudo systemctl edit alloy
+```
+Add:
+
+```bash
+[Service]
+StandardOutput=append:/var/log/alloy-startup.log
+StandardError=append:/var/log/alloy-startup.log
+```
+Save and reload:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart alloy
+```
+Now, even if it crashes instantly, you can see:
+
+```bash
+cat /var/log/alloy-startup.log
+```
