@@ -5,9 +5,9 @@
 #### ✅ Step 1: Locate MySQL Configuration File
 The config file is usually located at:
 
-Ubuntu/Debian: /etc/mysql/mysql.conf.d/mysqld.cnf  
-Amazon Linux: /etc/my.cnf  
-Docker container: Depends on the image; often /etc/mysql/my.cnf  
+Ubuntu/Debian    : /etc/mysql/mysql.conf.d/mysqld.cnf  
+Amazon Linux     : /etc/my.cnf  
+Docker container : Depends on the image; often /etc/mysql/my.cnf  
 You can find it by running:
 ```sh
 mysql --help | grep "Default options"
@@ -27,9 +27,9 @@ long_query_time = 1
 log_queries_not_using_indexes = 1
 ```
 
-slow_query_log = 1: Enables slow query logging.  
-slow_query_log_file: Path to the log file.  
-long_query_time = 1: Logs queries that take longer than 1 second.  
+slow_query_log = 1     : Enables slow query logging.  
+slow_query_log_file    : Path to the log file.  
+long_query_time = 1    : Logs queries that take longer than 1 second.  
 log_queries_not_using_indexes = 1: Optional, logs queries that don’t use indexes.
 
 ### 🔄 Step 3: Restart MySQL
