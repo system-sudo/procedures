@@ -69,8 +69,11 @@ sudo systemctl status node_exporter
 ```sh
 http://localhost:9100/metrics
 ```
-### 7️⃣ (Optional) Add to Prometheus Targets
+### 7️⃣ Add to Prometheus Targets
 Edit your Prometheus config (prometheus.yml):
+```sh
+sudo vi /etc/promethu
+```
 
 ```sh
   - job_name: 'node-exporter'
