@@ -6,14 +6,14 @@ sudo apt update -y
 at https://prometheus.io/download/
 or for specific version
 ```sh
-wget https://github.com/prometheus/prometheus/releases/download/v3.4.2/prometheus-3.4.2.linux-amd64.tar.gz
+wget https://github.com/prometheus/prometheus/releases/download/v3.5.0/prometheus-3.5.0.linux-amd64.tar.gz
 ```
 ```sh
-tar -xvf prometheus-3.4.2.linux-amd64.tar.gz
+tar -xvf prometheus-3.5.0.linux-amd64.tar.gz
 ```
-#### rename the prometheus-3.4.2.linux-amd64 to a shorter name - prometheus
+#### rename the prometheus-3.5.0.linux-amd64 to a shorter name - prometheus
 ```sh
-mv prometheus-3.4.2.linux-amd64 prometheus
+mv prometheus-3.5.0.linux-amd64 prometheus
 ```
 
 ### 1. Create Prometheus User and Directories
