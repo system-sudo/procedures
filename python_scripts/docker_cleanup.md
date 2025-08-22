@@ -1,6 +1,17 @@
 ### Python script to deletes all images from Docker Hub repo except last 5 images and latest in all repo of Docker Hub.
 
 ## ✅ How to Use
+### prerequisites:
+Install Python 3 Locally
+```sh
+sudo apt update
+sudo apt install python3 python3-pip
+```
+
+Verify Python3 Installation:
+```sh
+python3 --version
+```
 
 ### Install dependencies:
 ```sh
@@ -75,7 +86,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
 
 The script is also in https://github.com/system-sudo/procedures/blob/main/python_scripts/docker_cleanup.py
 
