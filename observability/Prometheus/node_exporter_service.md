@@ -9,7 +9,13 @@ https://prometheus.io/download/#node_exporter
 
 ```sh
 sudo curl -LO https://github.com/prometheus/node_exporter/releases/download/v1.9.1/node_exporter-1.9.1.linux-amd64.tar.gz
+```
+#### unzip using tar
+```sh
 sudo tar -xzf node_exporter-1.9.1.linux-amd64.tar.gz
+```
+#### rename the node_exporter-1.9.1.linux-amd64 to a shorter name - node_exporter
+```sh
 sudo mv node_exporter-1.9.1.linux-amd64 node_exporter
 ```
 ### 2️⃣ Create a System User
