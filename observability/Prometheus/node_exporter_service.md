@@ -67,7 +67,7 @@ sudo systemctl status node_exporter
 #### Open in browser:
 
 ```sh
-http://localhost:9100/metrics
+http://<server-ip>:9100/metrics
 ```
 ### 7️⃣ Add to Prometheus Targets
 Edit your Prometheus config (prometheus.yml):
