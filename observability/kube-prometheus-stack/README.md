@@ -13,7 +13,7 @@ helm repo update
 ```bash
 kubectl get svc  -n ingress-nginx
 ```
-Link https://github.com/system-sudo/procedures/blob/main/kube-prometheus-stack/custom_kube_prometheus_stack.yaml
+Link https://github.com/system-sudo/procedures/blob/main/observability/kube-prometheus-stack/custom_kube_prometheus_stack.yaml
 
 ## 🧰 Step 2: Install kube-prometheus-stack by passing Custom Values  
 ```bash
