@@ -7,10 +7,12 @@
 pip install requests
 ```
 
-### Save the script to a file,  
-e.g. docker_cleanup.py  
-The script is in https://github.com/system-sudo/procedures/blob/main/python_scripts/docker_cleanup.py
+### Save the script to a file:
+```sh
+sudo nano docker_cleanup.py
+```
 
+The script is in https://github.com/system-sudo/procedures/blob/main/python_scripts/docker_cleanup.py
 
 ### Replace with your actual credentials in the script.  
 your_dockerhub_username  
