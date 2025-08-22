@@ -78,7 +78,7 @@ sudo vi /etc/prometheus/prometheus.yml
 ```sh
   - job_name: 'node-exporter' # Name Identifier
     static_configs:
-      - targets: ['localhost:9100']
+      - targets: ['<server-ip>:9100']
 ```
 Then restart Prometheus:
 
