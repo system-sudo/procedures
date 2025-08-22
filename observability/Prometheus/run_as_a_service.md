@@ -3,11 +3,12 @@
 sudo apt update -y
 ```
 ### Download the latest prometheus
-at https://prometheus.io/download/
+at https://prometheus.io/download/  
 or for specific version
 ```sh
 wget https://github.com/prometheus/prometheus/releases/download/v3.5.0/prometheus-3.5.0.linux-amd64.tar.gz
 ```
+#### unzip using tar
 ```sh
 tar -xvf prometheus-3.5.0.linux-amd64.tar.gz
 ```
