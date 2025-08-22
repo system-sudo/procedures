@@ -72,11 +72,11 @@ http://localhost:9100/metrics
 ### 7️⃣ Add to Prometheus Targets
 Edit your Prometheus config (prometheus.yml):
 ```sh
-sudo vi /etc/promethu
+sudo vi /etc/prometheus/prometheus.yml
 ```
 
 ```sh
-  - job_name: 'node-exporter'
+  - job_name: 'node-exporter' # Name Identifier
     static_configs:
       - targets: ['localhost:9100']
 ```
