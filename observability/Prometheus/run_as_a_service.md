@@ -80,4 +80,4 @@ sudo systemctl status prometheus
 ### 🌐 6. Access Prometheus UI
 #### Open your browser and go to:
 
-http://<your-server-ip>:9090
+http://your-server-ip:9090
