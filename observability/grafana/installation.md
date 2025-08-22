@@ -7,6 +7,10 @@ Prometheus running (typically on localhost:9090)
 Alertmanager running (typically on localhost:9093)
 
 ### Step 1️⃣ Install Grafana
+
+## Recomemded to follow Official Documentation
+https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/  
+
 ```sh
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
