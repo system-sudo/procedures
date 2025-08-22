@@ -1,14 +1,13 @@
-## shell script that will generate a slow query in MySQL by deliberately running a query that takes time to execute.
+## Shell script that will generate a slow query in MySQL by deliberately running a query that takes time to execute.
 ### This is useful for testing slow query log monitoring with Filebeat and ELK.
 
 ### 🛠️ Step-by-Step: Enable Slow Query Logging in MySQL
 #### ✅ Step 1: Locate MySQL Configuration File
 The config file is usually located at:
 
-Ubuntu/Debian: /etc/mysql/mysql.conf.d/mysqld.cnf
-CentOS/RHEL: /etc/my.cnf
-Amazon Linux: /etc/my.cnf
-Docker container: Depends on the image; often /etc/mysql/my.cnf
+Ubuntu/Debian: /etc/mysql/mysql.conf.d/mysqld.cnf  
+Amazon Linux: /etc/my.cnf  
+Docker container: Depends on the image; often /etc/mysql/my.cnf  
 You can find it by running:
 ```sh
 mysql --help | grep "Default options"
@@ -28,9 +27,9 @@ long_query_time = 1
 log_queries_not_using_indexes = 1
 ```
 
-slow_query_log = 1: Enables slow query logging.
-slow_query_log_file: Path to the log file.
-long_query_time = 1: Logs queries that take longer than 1 second.
+slow_query_log = 1: Enables slow query logging.  
+slow_query_log_file: Path to the log file.  
+long_query_time = 1: Logs queries that take longer than 1 second.  
 log_queries_not_using_indexes = 1: Optional, logs queries that don’t use indexes.
 
 ### 🔄 Step 3: Restart MySQL
@@ -54,8 +53,8 @@ SHOW VARIABLES LIKE 'long_query_time';
 
 You should see:
 
-slow_query_log = ON
-slow_query_log_file = /var/log/mysql/mysql-slow.log
+slow_query_log = ON  
+slow_query_log_file = /var/log/mysql/mysql-slow.log  
 long_query_time = 1
 
 ### 🐚 Step 5:  Shell Script to Generate a Slow Query in MySQL
