@@ -1,34 +1,92 @@
 ## ✅ Step-by-Step: Run mysqld_exporter as a Service
 
+### 🐬 Install mysql server in target machine if not already Installed.
+```
+apt update
+apt install mysql-server
+systemctl start mysql
+systemctl enable mysql
+systemctl status mysql
+```
+Installs and starts MySQL on the target machine.
+Ensures MySQL starts automatically on boot.
+
+### 📝 create mysql user and database for mysqld_exporter
+```
+mysql -u root -p
+mysql> CREATE USER 'mysqld_exporter'@'localhost' IDENTIFIED BY 'StrongPassword';
+mysql> GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'mysqld_exporter'@'localhost';
+mysql> FLUSH PRIVILEGES;
+mysql> EXIT
+```
+
 ### 1️⃣ Download mysqld_exporter Binary
 #### 📦 Get the latest version from Prometheus GitHub:
 https://prometheus.io/download/#mysqld_exporter
 ```sh
 sudo curl -LO https://github.com/prometheus/mysqld_exporter/releases/download/v0.17.2/mysqld_exporter-0.17.2.linux-amd64.tar.gz
 ```
+#### or RUN below cmd to automatically get the latest version:
+```sh
+curl -s https://api.github.com/repos/prometheus/mysqld_exporter/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
+```
+Fetches the latest release URL for Linux from GitHub and downloads it using wget.
 #### unzip using tar
 ```sh
-sudo tar -xzf mysqld_exporter-0.17.2.linux-amd64.tar.gz
+sudo tar xvf mysqld_exporter*.tar.gz
 ```
 #### rename the mysqld_exporter-0.17.2.linux-amd64 to a shorter name - mysqld_exporter
 ```sh
-sudo mv mysqld_exporter-0.17.2.linux-amd64 mysqld_exporter
+sudo mv mysqld_exporter-*.linux-amd64 mysqld_exporter
 ```
 ### 2️⃣ Create a System User
+```sh
+sudo useradd -rs /bin/false mysqld_exporter
+```
+Creates a system user and group named mysqld_exporter with no login shell or home directory.
+This user will run the mysqld_exporter service securely.
+### 3️⃣ Move Binary to /usr/local/bin
 
 ```sh
-sudo useradd -rs /bin/false node_exporter
+sudo mv mysqld_exporter-*.linux-amd64/mysqld_exporter /usr/local/bin/
+sudo chmod +x /usr/local/bin/mysqld_exporter
+sudo chown mysqld_exporter:mysqld_exporter /usr/local/bin/mysqld_exporter
 ```
-### 3️⃣ Move Binary to /usr/local/bin
+🔍 5. Check Version
 ```sh
-sudo mv node_exporter/node_exporter /usr/local/bin/
-sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
+mysqld_exporter --version
 ```
+Verifies that the exporter is installed correctly.
+
+🔐 6. Create MySQL User for Exporter
+```sh
+CREATE USER 'mysqld_exporter'@'localhost' IDENTIFIED BY 'StrongPassword';
+GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'mysqld_exporter'@'localhost';
+FLUSH PRIVILEGES;
+```
+Creates a MySQL user with minimal privileges needed for monitoring.
+📝 7. Configure Credentials
+```sh
+sudo vim /etc/.mysqld_exporter.cnf
+```
+paste the following
+```sh
+[client]
+user=mysqld_exporter
+password=StrongPassword
+```
+Stores MySQL credentials in a config file.
+Used by mysqld_exporter to authenticate.
+```sh
+sudo chown mysqld_exporter:mysqld_exporter /etc/.mysqld_exporter.cnf
+sudo chmod 640 /etc/.mysqld_exporter.cnf
+```
+Update ownership so only the exporter can read its MySQL credentials:
 ### 4️⃣ Create a Systemd Service File
 #### Create the service unit:
 
 ```sh
-sudo vim /etc/systemd/system/node_exporter.service
+sudo vi /etc/systemd/system/mysql_exporter.service
 ```
 #### Paste the following:
 
@@ -83,48 +141,7 @@ sudo systemctl restart prometheus
 ```
 
 
-Install mysql server in target machine
-```
-apt update
-apt install mysql-server
-systemctl start mysql
-systemctl enable mysql
-systemctl status mysql
-```
-add user prometheus and add in prometheus group
-```
-useradd --no-create-home --shell /bin/false prometheus
-groupadd --system prometheus
-useradd -s /sbin/nologin --system -g prometheus prometheus
-```
-download the latest mysqld_exporter
-```
-curl -s https://api.github.com/repos/prometheus/mysqld_exporter/releases/latest | grep browser_download_url   | grep linux-amd64 | cut -d '"' -f 4   | wget -qi -
-```
-extract
-```
-tar xvf mysqld_exporter*.tar.gz
-```
-move to /usr/local/bin
-```
-mv  mysqld_exporter-*.linux-amd64/mysqld_exporter /usr/local/bin/
-```
-give execute permission to mysqld_exporter
-```
-chmod +x /usr/local/bin/mysqld_exporter
-```
-version check
-```
-mysqld_exporter  --version
-```
-create mysql user and database for mysqld_exporter
-```
-mysql -u root -p
-mysql> CREATE USER 'mysqld_exporter'@'localhost' IDENTIFIED BY 'StrongPassword';
-mysql> GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'mysqld_exporter'@'localhost';
-mysql> FLUSH PRIVILEGES;
-mysql> EXIT
-```
+
 Configure database credentials
 ```
 vim /etc/.mysqld_exporter.cnf
