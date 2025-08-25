@@ -8,7 +8,7 @@ sudo systemctl start mysql
 sudo systemctl enable mysql
 sudo systemctl status mysql
 ```
-Installs and starts MySQL on the target machine.
+Installs and starts MySQL on the target machine.  
 Ensures MySQL starts automatically on boot.
 
 ### 📝 create mysql user and database for mysqld_exporter
@@ -45,7 +45,7 @@ sudo mv mysqld_exporter-*.linux-amd64 mysqld_exporter
 ```sh
 sudo useradd -rs /bin/false mysqld_exporter
 ```
-Creates a system user and group named mysqld_exporter with no login shell or home directory.
+Creates a system user and group named mysqld_exporter with no login shell or home directory.  
 This user will run the mysqld_exporter service securely.
 ### 📝 Configure Credentials
 ```sh
