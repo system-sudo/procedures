@@ -77,6 +77,10 @@ sudo systemctl enable prometheus
 ```sh
 sudo systemctl status prometheus
 ```
+### Edit your Prometheus config (prometheus.yml):
+```sh
+sudo vi /etc/prometheus/prometheus.yml
+```
 
 ### 🌐 6. Access Prometheus UI
 #### Open your browser and go to:
