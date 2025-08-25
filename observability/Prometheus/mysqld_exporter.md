@@ -2,11 +2,11 @@
 
 ### 🐬 Install mysql server in target machine if not already Installed.
 ```
-apt update
-apt install mysql-server
-systemctl start mysql
-systemctl enable mysql
-systemctl status mysql
+sudo apt update
+sudo apt install mysql-server
+sudo systemctl start mysql
+sudo systemctl enable mysql
+sudo systemctl status mysql
 ```
 Installs and starts MySQL on the target machine.
 Ensures MySQL starts automatically on boot.
@@ -24,7 +24,7 @@ Creates a MySQL user with minimal privileges needed for monitoring.
 ### 📦 Download mysqld_exporter Binary
 #### RUN below cmd to automatically get the latest version:
 ```sh
-curl -s https://api.github.com/repos/prometheus/mysqld_exporter/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
+sudo curl -s https://api.github.com/repos/prometheus/mysqld_exporter/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
 ```
 Fetches the latest release URL for Linux from GitHub and downloads it using wget.
 #### or Get the specific version from Prometheus GitHub:
