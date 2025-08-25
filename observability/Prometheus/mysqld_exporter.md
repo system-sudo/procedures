@@ -162,3 +162,8 @@ Run:
 ```sh
 sudo journalctl -u mysqld_exporter.service --no-pager | tail -n 50
 ```
+### To Check mysql Logs for Errors:
+Run:
+```sh
+sudo journalctl -u mysql.service --no-pager | tail -n 50
+```
