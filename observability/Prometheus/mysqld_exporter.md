@@ -83,7 +83,7 @@ Verifies that the exporter is installed correctly.
 #### Create the service unit:
 
 ```sh
-sudo vi /etc/systemd/system/mysql_exporter.service
+sudo vi /etc/systemd/system/mysqld_exporter.service
 ```
 #### Paste the following:
 
