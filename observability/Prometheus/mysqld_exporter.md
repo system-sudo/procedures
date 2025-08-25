@@ -154,5 +154,6 @@ sudo vi /etc/prometheus/prometheus.yml
 Then restart Prometheus:
 
 ```sh
+sudo systemctl daemon-reload
 sudo systemctl restart prometheus
 ```
