@@ -68,7 +68,7 @@ sudo mv mysqld_exporter-*.linux-amd64 mysqld_exporter
 
 ### 📂 Move Binary to /usr/local/bin
 ```sh
-sudo mv mysqld_exporter-*.linux-amd64/mysqld_exporter /usr/local/bin/
+sudo mv mysqld_exporter/mysqld_exporter /usr/local/bin/
 sudo chmod +x /usr/local/bin/mysqld_exporter
 sudo chown mysqld_exporter:mysqld_exporter /usr/local/bin/mysqld_exporter
 ```
