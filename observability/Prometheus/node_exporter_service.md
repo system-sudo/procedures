@@ -85,3 +85,5 @@ Then restart Prometheus:
 ```sh
 sudo systemctl restart prometheus
 ```
+### Node Exporter Grafana Dashboard Panel
+https://grafana.com/grafana/dashboards/18639-full-server-status/
