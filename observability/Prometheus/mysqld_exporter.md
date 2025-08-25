@@ -21,26 +21,6 @@ mysql> EXIT
 ```
 Creates a MySQL user with minimal privileges needed for monitoring.
 
-### 📦 Download mysqld_exporter Binary
-#### RUN below cmd to automatically get the latest version:
-```sh
-sudo curl -s https://api.github.com/repos/prometheus/mysqld_exporter/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
-```
-Fetches the latest release URL for Linux from GitHub and downloads it using wget.
-#### or Get the specific version from Prometheus GitHub:
-https://prometheus.io/download/#mysqld_exporter
-```sh
-sudo curl -LO https://github.com/prometheus/mysqld_exporter/releases/download/v0.17.2/mysqld_exporter-0.17.2.linux-amd64.tar.gz
-```
-
-#### unzip using tar
-```sh
-sudo tar xvf mysqld_exporter*.tar.gz
-```
-#### rename the mysqld_exporter-0.17.2.linux-amd64 to a shorter name - mysqld_exporter
-```sh
-sudo mv mysqld_exporter-*.linux-amd64 mysqld_exporter
-```
 ### 👤 Create a System User
 ```sh
 sudo useradd -rs /bin/false mysqld_exporter
@@ -65,6 +45,27 @@ Update ownership so only the exporter can read its MySQL credentials:
 sudo chown mysqld_exporter:mysqld_exporter /etc/.mysqld_exporter.cnf
 sudo chmod 640 /etc/.mysqld_exporter.cnf
 ```
+### 📦 Download mysqld_exporter Binary
+#### RUN below cmd to automatically get the latest version:
+```sh
+sudo curl -s https://api.github.com/repos/prometheus/mysqld_exporter/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
+```
+Fetches the latest release URL for Linux from GitHub and downloads it using wget.
+#### or Get the specific version from Prometheus GitHub:
+https://prometheus.io/download/#mysqld_exporter
+```sh
+sudo curl -LO https://github.com/prometheus/mysqld_exporter/releases/download/v0.17.2/mysqld_exporter-0.17.2.linux-amd64.tar.gz
+```
+
+#### unzip using tar
+```sh
+sudo tar xvf mysqld_exporter*.tar.gz
+```
+#### rename the mysqld_exporter-0.17.2.linux-amd64 to a shorter name - mysqld_exporter
+```sh
+sudo mv mysqld_exporter-*.linux-amd64 mysqld_exporter
+```
+
 ### 📂 Move Binary to /usr/local/bin
 ```sh
 sudo mv mysqld_exporter-*.linux-amd64/mysqld_exporter /usr/local/bin/
