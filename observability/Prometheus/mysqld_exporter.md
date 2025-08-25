@@ -19,9 +19,11 @@ mysql> GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'mysqld_exporter'@'lo
 mysql> FLUSH PRIVILEGES;
 mysql> EXIT
 ```
+Creates a MySQL user with minimal privileges needed for monitoring.
 
-### 1️⃣ Download mysqld_exporter Binary
-#### 📦 Get the latest version from Prometheus GitHub:
+
+### 📦 Download mysqld_exporter Binary
+#### Get the latest version from Prometheus GitHub:
 https://prometheus.io/download/#mysqld_exporter
 ```sh
 sudo curl -LO https://github.com/prometheus/mysqld_exporter/releases/download/v0.17.2/mysqld_exporter-0.17.2.linux-amd64.tar.gz
@@ -39,33 +41,13 @@ sudo tar xvf mysqld_exporter*.tar.gz
 ```sh
 sudo mv mysqld_exporter-*.linux-amd64 mysqld_exporter
 ```
-### 2️⃣ Create a System User
+### 👤 Create a System User
 ```sh
 sudo useradd -rs /bin/false mysqld_exporter
 ```
 Creates a system user and group named mysqld_exporter with no login shell or home directory.
 This user will run the mysqld_exporter service securely.
-### 3️⃣ Move Binary to /usr/local/bin
-
-```sh
-sudo mv mysqld_exporter-*.linux-amd64/mysqld_exporter /usr/local/bin/
-sudo chmod +x /usr/local/bin/mysqld_exporter
-sudo chown mysqld_exporter:mysqld_exporter /usr/local/bin/mysqld_exporter
-```
-🔍 5. Check Version
-```sh
-mysqld_exporter --version
-```
-Verifies that the exporter is installed correctly.
-
-🔐 6. Create MySQL User for Exporter
-```sh
-CREATE USER 'mysqld_exporter'@'localhost' IDENTIFIED BY 'StrongPassword';
-GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'mysqld_exporter'@'localhost';
-FLUSH PRIVILEGES;
-```
-Creates a MySQL user with minimal privileges needed for monitoring.
-📝 7. Configure Credentials
+### 📝 Configure Credentials
 ```sh
 sudo vim /etc/.mysqld_exporter.cnf
 ```
@@ -75,13 +57,27 @@ paste the following
 user=mysqld_exporter
 password=StrongPassword
 ```
-Stores MySQL credentials in a config file.
-Used by mysqld_exporter to authenticate.
+Stores MySQL credentials in a config file.  
+Used by mysqld_exporter to authenticate. 
+
+Update ownership so only the exporter can read its MySQL credentials:
 ```sh
 sudo chown mysqld_exporter:mysqld_exporter /etc/.mysqld_exporter.cnf
 sudo chmod 640 /etc/.mysqld_exporter.cnf
 ```
-Update ownership so only the exporter can read its MySQL credentials:
+### 📂 Move Binary to /usr/local/bin
+```sh
+sudo mv mysqld_exporter-*.linux-amd64/mysqld_exporter /usr/local/bin/
+sudo chmod +x /usr/local/bin/mysqld_exporter
+sudo chown mysqld_exporter:mysqld_exporter /usr/local/bin/mysqld_exporter
+```
+### 🔍 Check Version
+```sh
+mysqld_exporter --version
+```
+Verifies that the exporter is installed correctly.
+
+
 ### 4️⃣ Create a Systemd Service File
 #### Create the service unit:
 
@@ -92,36 +88,55 @@ sudo vi /etc/systemd/system/mysql_exporter.service
 
 ```sh
 [Unit]
-Description=Node Exporter
+Description=Prometheus MySQL Exporter
 After=network.target
-
+User=mysqld_exporter
+Group=mysqld_exporter
+ 
 [Service]
-User=node_exporter
-Group=node_exporter
 Type=simple
-ExecStart=/usr/local/bin/node_exporter
-Restart=on-failure
-
+Restart=always
+ExecStart=/usr/local/bin/mysqld_exporter \
+--config.my-cnf /etc/.mysqld_exporter.cnf \
+--collect.global_status \
+--collect.info_schema.innodb_metrics \
+--collect.auto_increment.columns \
+--collect.info_schema.processlist \
+--collect.binlog_size \
+--collect.info_schema.tablestats \
+--collect.global_variables \
+--collect.info_schema.query_response_time \
+--collect.info_schema.userstats \
+--collect.info_schema.tables \
+--collect.perf_schema.tablelocks \
+--collect.perf_schema.file_events \
+--collect.perf_schema.eventswaits \
+--collect.perf_schema.indexiowaits \
+--collect.perf_schema.tableiowaits \
+--collect.slave_status \
+--web.listen-address=0.0.0.0:9104
+ 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
 ```
 Save and exit (:wq in Vim).
-### 5️⃣ Start and Enable Node Exporter
+### 5️⃣ Start and Enable mysqld_exporter
 ```sh
 sudo systemctl daemon-reload
-sudo systemctl enable node_exporter
-sudo systemctl start node_exporter
+sudo systemctl enable mysqld_exporter
+sudo systemctl start mysqld_exporter
 ```
+### 6️⃣ Verify mysqld_exporter is Running
 #### Check status:
 
 ```sh
-sudo systemctl status node_exporter
+sudo systemctl status mysqld_exporter
 ```
-### 6️⃣ Verify Node Exporter is Running
+
 #### Open in browser:
 
 ```sh
-http://<server-ip>:9100/metrics
+http://<server-ip>:9104/metrics
 ```
 ### 7️⃣ Add to Prometheus Targets
 Edit your Prometheus config (prometheus.yml):
@@ -130,9 +145,10 @@ sudo vi /etc/prometheus/prometheus.yml
 ```
 
 ```sh
-  - job_name: 'node-exporter' # Name Identifier
+  - job_name: 'mysqld_exporter' # Name Identifier
+    scrape_interval: 5s
     static_configs:
-      - targets: ['<server-ip>:9100']
+      - targets: ['server_ip:9104']
 ```
 Then restart Prometheus:
 
