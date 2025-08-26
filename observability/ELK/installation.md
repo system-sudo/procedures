@@ -1,10 +1,4 @@
-
-
-## Install Kibana with Debian package
-#### Follow Official documentation at:
-```
-https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
-```
+## Elastic Stack Installation ( elastic search, Logstash, kibana, filebeat)
 
 ### Step #1:Install Java for Elastic Stack
 #### Start by updating your system’s package index.
@@ -122,6 +116,10 @@ sudo systemctl enable logstash
 sudo systemctl status logstash
 ```
 ### Step #5:Install Kibana
+#### Follow Official documentation at:
+```
+https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
+```
 #### Kibana provides a web interface for visualizing data from Elasticsearch. Install Kibana using following command.
 ```sh
 sudo apt-get install kibana
