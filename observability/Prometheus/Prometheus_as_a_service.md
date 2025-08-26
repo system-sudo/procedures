@@ -14,7 +14,7 @@ sudo curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest 
 Fetches the latest release URL for Linux from GitHub and downloads it using wget.
 #### or Get the specific version from Prometheus GitHub:
 at https://prometheus.io/download/  
-or for specific version
+
 ```sh
 wget https://github.com/prometheus/prometheus/releases/download/v3.5.0/prometheus-3.5.0.linux-amd64.tar.gz
 ```
