@@ -3,8 +3,17 @@
 Linux server with internet  
 curl and tar installed
 
-### 1️⃣ Download Node Exporter Binary
-#### 📦 Get the latest version from Prometheus GitHub:
+### 1️⃣ Download Node Exporter Binary  
+#### RUN below cmd to automatically get the latest version:
+```sh
+sudo curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest \
+| grep browser_download_url \
+| grep linux-amd64.tar.gz \
+| cut -d '"' -f 4 \
+| wget -qi -
+```
+Fetches the latest release URL for Linux from GitHub and downloads it using wget.
+#### or Get the specific version from Prometheus GitHub:
 https://prometheus.io/download/#node_exporter
 
 ```sh
@@ -12,11 +21,11 @@ sudo curl -LO https://github.com/prometheus/node_exporter/releases/download/v1.9
 ```
 #### unzip using tar
 ```sh
-sudo tar -xzf node_exporter-1.9.1.linux-amd64.tar.gz
+sudo tar -xzf node_exporter-*.linux-amd64.tar.gz
 ```
 #### rename the node_exporter-1.9.1.linux-amd64 to a shorter name - node_exporter
 ```sh
-sudo mv node_exporter-1.9.1.linux-amd64 node_exporter
+sudo mv node_exporter-*.linux-amd64 node_exporter
 ```
 ### 2️⃣ Create a System User
 
