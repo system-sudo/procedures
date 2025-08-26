@@ -1,7 +1,7 @@
 
 
 ## Install Kibana with Debian package
-#### Follow Official documentaion:
+#### Follow Official documentation at:
 ```
 https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
 ```
