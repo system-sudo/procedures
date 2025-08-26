@@ -101,6 +101,10 @@ curl -X GET "server-ip:9200"
 You can access it using browser with your Public IP address:9200 port which is a default port for Elasticksearch.
 
 ### Step #4:Install Logstash
+#### Follow Official documentation at:
+```
+https://www.elastic.co/docs/reference/logstash/installing-logstash
+```
 #### Logstash is used to process and forward log data to Elasticsearch. Install Logstash using following command.
 ```sh
 sudo apt-get install logstash -y
