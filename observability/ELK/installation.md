@@ -7,7 +7,7 @@ https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-wit
 https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
 
 
-### Step #1:Install Java for Elastic Stack on Ubuntu 24.04 LTS
+### Step #1:Install Java for Elastic Stack
 #### Start by updating your system’s package index.
 ```sh
 sudo apt update
@@ -35,21 +35,21 @@ java -version
 sudo nano /etc/environment
 ```
 
-Add the following line at the end of the file.
+#### Add the following line at the end of the file.
 ```sh
 JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 ```
-Apply the changes by reloading the environment.
+#### Apply the changes by reloading the environment.
 ```sh
 source /etc/environment
 ```
 
-Verify that JAVA_HOME is set correctly.
+#### Verify that JAVA_HOME is set correctly.
 ```sh
 echo $JAVA_HOME
 ```
 
-### Step #2:Install ElasticSearch on Ubuntu 24.04 LTS
+### Step #2:Install ElasticSearch
 #### Elasticsearch is the core component of the ELK Stack, used for search and analytics. We need to import the public signing key and add the Elasticsearch APT repository to your system.
 ```sh
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
@@ -62,68 +62,68 @@ echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://arti
 
 #### Update the package lists again to include the new Elasticsearch repository.
 
-
+```sh
 sudo apt-get update
-How to Install Elastic Stack on Ubuntu 24.04 LTS 10
-Install Elasticsearch.
+```
+#### Install Elasticsearch.
 
-
+```sh
 sudo apt-get install elasticsearch
-How to Install Elastic Stack on Ubuntu 24.04 LTS 11
-Start Elasticsearch and configure it to run at system startup.
-
+```
+#### Start Elasticsearch and configure it to run at system startup.
+```sh
 sudo systemctl start elasticsearch
 sudo systemctl enable elasticsearch
-How to Install Elastic Stack on Ubuntu 24.04 LTS 12
-Verify that Elasticsearch is running.
+```
+#### Verify that Elasticsearch is running.
 
-
+```sh
 sudo systemctl status elasticsearch
-You should see output indicating that the service is active and running.
+```
 
-How to Install Elastic Stack on Ubuntu 24.04 LTS 13
-Step #3:Configure Elasticsearch on Ubuntu 24.04 LTS
+### Step #3:Configure Elasticsearch
 
-Ubuntu-based server monitoringLong-term support for Elastic Stack
-To allow external access to Elasticsearch, modify the configuration file.
-
+#### To allow external access to Elasticsearch, modify the configuration file.
+```sh
 sudo nano /etc/elasticsearch/elasticsearch.yml
-How to Install Elastic Stack on Ubuntu 24.04 LTS 14
-Find the network.host setting, uncomment it, and set it to 0.0.0.0 to bind to all available IP addresses and uncomment the discovery section to specify the initial nodes for cluster formation discovery.seed_hosts: []
+```
+#### Find the network.host setting, uncomment it, and set it to 0.0.0.0 to bind to all available IP addresses and uncomment the discovery section to specify the initial nodes for cluster formation discovery.seed_hosts: []
+<img width="903" height="541" alt="image" src="https://github.com/user-attachments/assets/fbb23bd1-f66f-4514-a8d3-5521bb6f3898" />
 
-How to Install Elastic Stack on Ubuntu 24.04 LTS 15
-For a basic setup (not recommended for production), disable security features.
+#### For a basic setup (not recommended for production), disable security features.
+<img width="951" height="697" alt="image" src="https://github.com/user-attachments/assets/a8d4b739-8067-4cb1-a23a-5802ab0614da" />
 
-How to Install Elastic Stack on Ubuntu 24.04 LTS 16
-Restart Elasticsearch to apply the changes.
-
+#### Restart Elasticsearch to apply the changes.
+```sh
 sudo systemctl restart elasticsearch
-How to Install Elastic Stack on Ubuntu 24.04 LTS 17
-To confirm that Elasticsearch is set up correctly, send a test HTTP request using curl.
+```
 
-curl -X GET "localhost:9200"
-You should see a JSON response.
-
-How to Install Elastic Stack on Ubuntu 24.04 LTS 18
+#### To confirm that Elasticsearch is set up correctly, send a test HTTP request using curl.
+```sh
+curl -X GET "server-ip:9200"
+```
 You can access it using browser with your Public IP address:9200 port which is a default port for Elasticksearch.
 
-How to Install Elastic Stack on Ubuntu 24.04 LTS 19
-Step #4:Install Logstash on Ubuntu 24.04 LTS
-Logstash is used to process and forward log data to Elasticsearch. Install Logstash using following command.Ubuntu-based server monitoringLong-term support for Elastic Stack
+#### You should see a JSON response.
+<img width="622" height="362" alt="image" src="https://github.com/user-attachments/assets/5394f2a3-268d-4450-ab89-1b6e93976d08" />
 
+### Step #4:Install Logstash
+#### Logstash is used to process and forward log data to Elasticsearch. Install Logstash using following command.
+```sh
 sudo apt-get install logstash -y
-How to Install Elastic Stack on Ubuntu 24.04 LTS 20
-Start and enable Logstash.
-
+```
+#### Start and enable Logstash.
+```sh
 sudo systemctl start logstash
 sudo systemctl enable logstash
-How to Install Elastic Stack on Ubuntu 24.04 LTS 21
-Verify the service status.
+```
 
+#### Verify the service status.
+```sh
 sudo systemctl status logstash
-How to Install Elastic Stack on Ubuntu 24.04 LTS 22
-Step #5:Install Kibana on Ubuntu 24.04 LTS
-Kibana provides a web interface for visualizing data from Elasticsearch. Install Kibana using following command.Ubuntu-based server monitoringLong-term support for Elastic Stack
+```
+### Step #5:Install Kibana
+#### Kibana provides a web interface for visualizing data from Elasticsearch. Install Kibana using following command.Ubuntu-based server monitoringLong-term support for Elastic Stack
 
 sudo apt-get install kibana
 How to Install Elastic Stack on Ubuntu 24.04 LTS 23
