@@ -95,10 +95,10 @@ sudo systemctl restart elasticsearch
 ```sh
 curl -X GET "server-ip:9200"
 ```
-You can access it using browser with your Public IP address:9200 port which is a default port for Elasticksearch.
-
 #### You should see a JSON response.
 <img width="622" height="362" alt="image" src="https://github.com/user-attachments/assets/5394f2a3-268d-4450-ab89-1b6e93976d08" />
+
+You can access it using browser with your Public IP address:9200 port which is a default port for Elasticksearch.
 
 ### Step #4:Install Logstash
 #### Logstash is used to process and forward log data to Elasticsearch. Install Logstash using following command.
