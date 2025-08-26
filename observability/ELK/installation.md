@@ -1,11 +1,10 @@
 
 
 ## Install Kibana with Debian package
+#### Follow Official documentaion:
 ```
 https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
 ```
-https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
-
 
 ### Step #1:Install Java for Elastic Stack
 #### Start by updating your system’s package index.
