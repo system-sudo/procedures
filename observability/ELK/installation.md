@@ -1,4 +1,4 @@
-## Elastic Stack Installation ( elastic search, Logstash, kibana, filebeat)
+## Elastic Stack Installation ( Elasticsearch, Logstash, Kibana, Filebeat)
 
 ### Step #1:Install Java for Elastic Stack
 #### Start by updating your system’s package index.
