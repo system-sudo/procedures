@@ -1,6 +1,7 @@
-## Elastic Stack Installation ( Elasticsearch, Logstash, Kibana, Filebeat)
+## Elastic Stack Installation for Ubuntu 24.04 LTS ( Elasticsearch, Logstash, Kibana, Filebeat)
 
 ### Step #1:Install Java for Elastic Stack
+Note: You might want to check if Elastic 9.x still requires Java for all components. Installing Java is optional unless you're using custom setups or older versions.
 #### Start by updating your system’s package index.
 ```sh
 sudo apt update
@@ -43,14 +44,18 @@ echo $JAVA_HOME
 ```
 
 ### Step #2:Install ElasticSearch
-#### Elasticsearch is the core component of the ELK Stack, used for search and analytics. We need to import the public signing key and add the Elasticsearch APT repository to your system.
+#### Follow Official documentation at:
+```
+https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-elasticsearch-with-debian-package
+```
+#### We need to import the public signing key and add the Elasticsearch APT repository to your system.
 ```sh
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
 ```
 
 #### Add the repository definition.
 ```sh
-echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/9.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-9.x.list
 ```
 
 #### Update the package lists again to include the new Elasticsearch repository.
@@ -105,6 +110,16 @@ You can access it using browser with your Public IP address:9200 port which is a
 ```
 https://www.elastic.co/docs/reference/logstash/installing-logstash
 ```
+#### We need to import the public signing key and add the APT repository to your system.
+```sh
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic-keyring.gpg
+```
+
+#### Add the repository definition.
+```sh
+echo "deb [signed-by=/usr/share/keyrings/elastic-keyring.gpg] https://artifacts.elastic.co/packages/9.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-9.x.list
+```
+
 #### Logstash is used to process and forward log data to Elasticsearch. Install Logstash using following command.
 ```sh
 sudo apt-get install logstash -y
@@ -124,6 +139,16 @@ sudo systemctl status logstash
 ```
 https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
 ```
+#### We need to import the public signing key and add the APT repository to your system.
+### NOTE: both Elasticsearch/Kibana use same key and Repo, hence no need to add again.
+```sh
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+```
+#### Add the repository definition.
+```sh
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/9.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-9.x.list
+```
+
 #### Kibana provides a web interface for visualizing data from Elasticsearch. Install Kibana using following command.
 ```sh
 sudo apt-get install kibana
@@ -147,7 +172,7 @@ sudo nano /etc/kibana/kibana.yml
 ```sh
 server.port: 5601
 server.host: "0.0.0.0"
-elasticsearch.hosts: ["http://localhost:9200"] # elasticsearchnshould be installed in same server or use 0.0.0.0:9200
+elasticsearch.hosts: ["http://localhost:9200"] # If Elasticsearch is on a different server than kibana, replace localhost with its IP.
 ```
 <img width="1010" height="721" alt="image" src="https://github.com/user-attachments/assets/06dec190-4cfb-4bb0-b137-c99d183cd718" />
 
