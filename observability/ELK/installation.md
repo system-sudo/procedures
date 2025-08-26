@@ -122,46 +122,78 @@ sudo systemctl enable logstash
 sudo systemctl status logstash
 ```
 ### Step #5:Install Kibana
-#### Kibana provides a web interface for visualizing data from Elasticsearch. Install Kibana using following command.Ubuntu-based server monitoringLong-term support for Elastic Stack
-
+#### Kibana provides a web interface for visualizing data from Elasticsearch. Install Kibana using following command.
+```sh
 sudo apt-get install kibana
-How to Install Elastic Stack on Ubuntu 24.04 LTS 23
+```
 Start and enable the Kibana service.
-
+```sh
 sudo systemctl start kibana
 sudo systemctl enable kibana
-How to Install Elastic Stack on Ubuntu 24.04 LTS 24
+```
 Check the status of Kibana:
-
+```sh
 sudo systemctl status kibana
-How to Install Elastic Stack on Ubuntu 24.04 LTS 25
-Step #6:Configure Kibana on Ubuntu 24.04 LTS
-To configure Kibana for external access, edit the configuration file.Ubuntu-based server monitoring
-
+```
+### Step #6:Configure Kibana on Ubuntu 24.04 LTS
+#### To configure Kibana for external access, edit the configuration file.
+```sh
 sudo nano /etc/kibana/kibana.yml
-How to Install Elastic Stack on Ubuntu 24.04 LTS 26
-Uncomment and adjust the following lines to bind Kibana to all IP addresses and connect it to Elasticsearch.
+```
+#### Uncomment and adjust the following lines to bind Kibana to all IP addresses and connect it to Elasticsearch.
 
-
+```sh
 server.port: 5601
 server.host: "0.0.0.0"
-elasticsearch.hosts: ["http://localhost:9200"]
-How to Install Elastic Stack on Ubuntu 24.04 LTS 27
-Restart Kibana to apply the changes.
+elasticsearch.hosts: ["http://localhost:9200"] # elasticsearchnshould be installed in same server or use 0.0.0.0:9200
+```
+<img width="1010" height="721" alt="image" src="https://github.com/user-attachments/assets/06dec190-4cfb-4bb0-b137-c99d183cd718" />
 
+#### Restart Kibana to apply the changes.
+```sh
 sudo systemctl restart kibana
-How to Install Elastic Stack on Ubuntu 24.04 LTS 28
-Access the Kibana interface by navigating to http://<your-server-ip>:5601 in your web browser. This will open the Kibana dashboard where you can start exploring your data.
+```
+#### Access the Kibana interface by navigating to http://<your-server-ip>:5601 in your web browser. This will open the Kibana dashboard where you can start exploring your data.
+<img width="1024" height="516" alt="image" src="https://github.com/user-attachments/assets/42ba991d-ad56-47ae-b26f-51bf67384ab6" />
 
-How to Install Elastic Stack on Ubuntu 24.04 LTS 29
-You can start by adding integrations or Explore on my own.
+Step #7:Install Filebeat on Ubuntu 24.04 LTS
+Filebeat is a lightweight shipper used to forward and centralize log data. Install Filebeat using following command.
 
+sudo apt-get install filebeat
+How to Install Elastic Stack on Ubuntu 24.04 LTS 31
+Open the Filebeat configuration file to send logs to Logstash.
 
+sudo nano /etc/filebeat/filebeat.yml
+How to Install Elastic Stack on Ubuntu 24.04 LTS 32
+Comment out the Elasticsearch output section.
 
+# output.elasticsearch:
+ #  hosts: ["localhost:9200"]
+Uncomment and configure the Logstash output section.
 
+output.logstash:
+  hosts: ["localhost:5044"]
+How to Install Elastic Stack on Ubuntu 24.04 LTS 33
+Enable the system module, which collects log data from the local system.
 
+sudo filebeat modules enable system
+How to Install Elastic Stack on Ubuntu 24.04 LTS 34
+Set up Filebeat to load the index template into Elasticsearch.
 
+sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["0.0.0.0:9200"]'
+How to Install Elastic Stack on Ubuntu 24.04 LTS 35
+Start and enable the Filebeat service.
 
+sudo systemctl start filebeat
+sudo systemctl enable filebeat
+How to Install Elastic Stack on Ubuntu 24.04 LTS 36
+Ensure Elasticsearch is receiving data from Filebeat by checking the indices.
+
+curl -XGET "localhost:9200/_cat/indices?v"
+You should see output indicating the presence of indices created by Filebeat.
+
+How to Install Elastic Stack on Ubuntu 24.04 LTS 37
+You can access it using browser using http://<your-server-ip>:9200/_cat/indices?v
 
 ### Sources:
 1. https://www.youtube.com/watch?v=GZudei1xTnc
