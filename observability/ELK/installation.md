@@ -1,58 +1,66 @@
 
 
 ## Install Kibana with Debian package
-```bash
+```
 https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
 ```
 https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana-with-debian-package
 
 
 ### Step #1:Install Java for Elastic Stack on Ubuntu 24.04 LTS
-Start by updating your system’s package index.
-
+#### Start by updating your system’s package index.
+```sh
 sudo apt update
-How to Install Elastic Stack on Ubuntu 24.04 LTS 1
-Install the apt-transport-https package to access repository over HTTPS.
+```
 
- sudo apt install apt-transport-https
-How to Install Elastic Stack on Ubuntu 24.04 LTS 2Ubuntu-based server monitoringLong-term support for Elastic Stack
-Elastic Stack components require Java. We will install OpenJDK 11, which is a widely used open-source implementation of the Java Platform.
+#### Install the apt-transport-https package to access repository over HTTPS.
+```sh
+sudo apt install apt-transport-https
+```
 
+#### Elastic Stack components require Java. We will install OpenJDK 11, which is a widely used open-source implementation of the Java Platform.
 
+```sh
 sudo apt install openjdk-11-jdk -y
-How to Install Elastic Stack on Ubuntu 24.04 LTS 3
-After installation, verify that Java is correctly installed by checking its version.
+```
 
+#### After installation, verify that Java is correctly installed by checking its version.
+```sh
 java -version
-How to Install Elastic Stack on Ubuntu 24.04 LTS 4
-To ensure stack components can locate Java, we need to set the JAVA_HOME environment variable. Open the environment file.
+```
 
+#### To ensure stack components can locate Java, we need to set the JAVA_HOME environment variable. Open the environment file.
 
+```sh
 sudo nano /etc/environment
-How to Install Elastic Stack on Ubuntu 24.04 LTS 5
+```
+
 Add the following line at the end of the file.
-
+```sh
 JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+```
 Apply the changes by reloading the environment.
-
+```sh
 source /etc/environment
-How to Install Elastic Stack on Ubuntu 24.04 LTS 6
+```
+
 Verify that JAVA_HOME is set correctly.
-
-
+```sh
 echo $JAVA_HOME
-How to Install Elastic Stack on Ubuntu 24.04 LTS 7
-Step #2:Install ElasticSearch on Ubuntu 24.04 LTS
-Elasticsearch is the core component of the ELK Stack, used for search and analytics. We need to import the public signing key and add the Elasticsearch APT repository to your system.Ubuntu-based server monitoringLong-term support for Elastic Stack
+```
 
-
+### Step #2:Install ElasticSearch on Ubuntu 24.04 LTS
+#### Elasticsearch is the core component of the ELK Stack, used for search and analytics. We need to import the public signing key and add the Elasticsearch APT repository to your system.
+```sh
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
-How to Install Elastic Stack on Ubuntu 24.04 LTS 8
-Add the repository definition.
+```
 
+#### Add the repository definition.
+```sh
 echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
-How to Install Elastic Stack on Ubuntu 24.04 LTS 9
-Update the package lists again to include the new Elasticsearch repository.
+```
+
+#### Update the package lists again to include the new Elasticsearch repository.
 
 
 sudo apt-get update
