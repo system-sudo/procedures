@@ -10,7 +10,7 @@ sudo curl -s https://api.github.com/repos/prometheus/node_exporter/releases/late
 | grep browser_download_url \
 | grep linux-amd64.tar.gz \
 | cut -d '"' -f 4 \
-| wget -qi -
+| sudo wget -qi -
 ```
 Fetches the latest release URL for Linux from GitHub and downloads it using wget.
 #### or Get the specific version from Prometheus GitHub:
