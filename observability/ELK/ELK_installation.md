@@ -20,12 +20,15 @@ sudo apt update
 sudo apt install apt-transport-https
 ```
 
-#### Elastic Stack components require Java. We will install OpenJDK 11, which is a widely used open-source implementation of the Java Platform.
+#### Java Installation.
 
 ```sh
 sudo apt install openjdk-11-jdk -y
 ```
-
+or
+```sh
+sudo apt update && sudo apt install openjdk-17-jre-headless -y
+```
 #### After installation, verify that Java is correctly installed by checking its version.
 ```sh
 java -version
