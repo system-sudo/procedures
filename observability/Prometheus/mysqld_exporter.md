@@ -169,3 +169,8 @@ sudo journalctl -u mysql.service --no-pager | tail -n 50
 ```
 ### mysqld Exporter Grafana Dashboard Panel
 https://grafana.com/grafana/dashboards/14031-mysql-dashboard/
+
+### Check Exporter Logs
+```sh
+sudo journalctl -u mysqld_exporter.service
+```
