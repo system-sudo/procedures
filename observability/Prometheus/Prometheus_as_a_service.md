@@ -91,6 +91,10 @@ sudo systemctl status prometheus
 ```sh
 sudo vi /etc/prometheus/prometheus.yml
 ```
+and Restart
+```sh
+sudo systemctl restart prometheus
+```
 
 ### 🌐 6. Access Prometheus UI
 #### Open your browser and go to:
