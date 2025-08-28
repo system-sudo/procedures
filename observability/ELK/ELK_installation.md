@@ -3,8 +3,10 @@
 - Stores and Indexs Logs.  
 #### * Logstash
 - Processes and tranforms logs before storing them in Elasticsearch.  
-#### * Kibana - Provides visualization.  
-#### * Filebeat - Forwards logs from the application to logstash.
+#### * Kibana 
+- Provides visualization.  
+#### * Filebeat 
+- Forwards logs from the application to logstash.
 
 ### Step #1:Install Java for Elastic Stack
 Note: You might want to check if Elastic 9.x still requires Java for all components. Installing Java is optional unless you're using custom setups or older versions.
