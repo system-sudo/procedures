@@ -129,7 +129,7 @@ Press Ctrl+C in the terminal where it’s running.
 #### 🧪 Optional: Run in Background
 If you want it to run in the background:
 ```sh
-nohup ./generate_slow_queries.sh > slow_query.log 2>&1 &
+nohup ./generate_slow_queries.sh > slow-query.log 2>&1 &
 ```
 
 This will keep it running even after you log out. You can check the output in slow_query.log.
