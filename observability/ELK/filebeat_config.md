@@ -1,3 +1,6 @@
+https://www.elastic.co/docs/reference/beats/filebeat/filebeat-installation-configuration
+
+
 ```sh
 # ============================== Filebeat inputs ===============================
 
