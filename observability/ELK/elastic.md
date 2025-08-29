@@ -49,17 +49,4 @@ Matching Xms and Xmx avoids GC overhead and memory fragmentation.
 sudo systemctl restart elasticsearch
 ```
 
-
-
-
-
-
-
-✅ Recommendation for your setup (8 GB server):
-
-Service	Heap / Memory
-Elasticsearch	4 GB (-Xms4g -Xmx4g)
-Logstash	1 GB (default)
-Kibana	Default
-
-This setup balances memory without starving the OS.
+### This setup balances memory without starving the OS.
