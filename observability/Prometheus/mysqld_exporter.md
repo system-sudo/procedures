@@ -172,8 +172,3 @@ sudo journalctl -u mysql.service --no-pager | tail -n 50
 https://github.com/system-sudo/procedures/blob/main/observability/Prometheus/sql_dashboard_modified.json
 #### Original
 https://grafana.com/grafana/dashboards/14031-mysql-dashboard/
-
-### Check Exporter Logs
-```sh
-sudo journalctl -u mysqld_exporter.service
-```
