@@ -91,10 +91,10 @@ sudo vi /etc/systemd/system/mysqld_exporter.service
 [Unit]
 Description=Prometheus MySQL Exporter
 After=network.target
-User=mysqld_exporter
-Group=mysqld_exporter
  
 [Service]
+User=mysqld_exporter
+Group=mysqld_exporter
 Type=simple
 Restart=always
 ExecStart=/usr/local/bin/mysqld_exporter \
