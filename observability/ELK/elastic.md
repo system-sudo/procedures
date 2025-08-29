@@ -49,4 +49,4 @@ Matching Xms and Xmx avoids GC overhead and memory fragmentation.
 sudo systemctl restart elasticsearch
 ```
 
-### This setup balances memory without starving the OS.
+#### This setup balances memory without starving the OS.
