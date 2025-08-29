@@ -173,7 +173,7 @@ Check the status of Kibana:
 ```sh
 sudo systemctl status kibana
 ```
-### Step #6:Configure Kibana on Ubuntu 24.04 LTS
+### Step #6:Configure Kibana
 #### To configure Kibana for external access, edit the configuration file.
 ```sh
 sudo nano /etc/kibana/kibana.yml
@@ -194,44 +194,69 @@ sudo systemctl restart kibana
 #### Access the Kibana interface by navigating to http://<your-server-ip>:5601 in your web browser. This will open the Kibana dashboard where you can start exploring your data.
 <img width="1024" height="516" alt="image" src="https://github.com/user-attachments/assets/42ba991d-ad56-47ae-b26f-51bf67384ab6" />
 
-Step #7:Install Filebeat on Ubuntu 24.04 LTS
+### Step #7:Install Filebeat
 Filebeat is a lightweight shipper used to forward and centralize log data. Install Filebeat using following command.
-
-sudo apt-get install filebeat
-How to Install Elastic Stack on Ubuntu 24.04 LTS 31
-Open the Filebeat configuration file to send logs to Logstash.
-
-sudo nano /etc/filebeat/filebeat.yml
-How to Install Elastic Stack on Ubuntu 24.04 LTS 32
-Comment out the Elasticsearch output section.
-
-# output.elasticsearch:
- #  hosts: ["localhost:9200"]
-Uncomment and configure the Logstash output section.
-
-output.logstash:
-  hosts: ["localhost:5044"]
-How to Install Elastic Stack on Ubuntu 24.04 LTS 33
-Enable the system module, which collects log data from the local system.
-
-sudo filebeat modules enable system
-How to Install Elastic Stack on Ubuntu 24.04 LTS 34
-Set up Filebeat to load the index template into Elasticsearch.
-
-sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["0.0.0.0:9200"]'
-How to Install Elastic Stack on Ubuntu 24.04 LTS 35
-Start and enable the Filebeat service.
-
+#### Follow Official documentation at:
+```
+https://www.elastic.co/docs/reference/beats/filebeat/setup-repositories#_apt
+```
+#### We need to import the public signing key and add the APT repository to your system.
+#### Download and install the Public Signing Key:
+```
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+```
+#### You may need to install the apt-transport-https package on Debian before proceeding:
+```
+sudo apt-get install apt-transport-https
+```
+#### Save the repository definition to /etc/apt/sources.list.d/elastic-9.x.list:
+```sh
+echo "deb https://artifacts.elastic.co/packages/9.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-9.x.list
+```
+#### Run apt-get update, and the repository is ready for use. For example, you can install Filebeat by running:
+```sh
+sudo apt-get update && sudo apt-get install filebeat
+```
+#### To configure Filebeat to start automatically during boot, run:
+```sh
 sudo systemctl start filebeat
 sudo systemctl enable filebeat
-How to Install Elastic Stack on Ubuntu 24.04 LTS 36
-Ensure Elasticsearch is receiving data from Filebeat by checking the indices.
+```
+#### Check the status of Filebeat:
+```sh
+sudo systemctl status filebeat
+```
 
+#### Open the Filebeat configuration file to send logs to Logstash.
+```sh
+sudo nano /etc/filebeat/filebeat.yml
+```
+#### Comment out the Elasticsearch output section.
+```sh
+# output.elasticsearch:
+ #  hosts: ["localhost:9200"]
+```
+#### Uncomment and configure the Logstash output section.
+```sh
+output.logstash:
+  hosts: ["localhost:5044"]
+```
+<img width="742" height="632" alt="image" src="https://github.com/user-attachments/assets/9de6075f-9123-4f88-8f99-d9cf76954c64" />
+
+#### Ensure Elasticsearch is receiving data from Filebeat by checking the indices.
+```sh
 curl -XGET "localhost:9200/_cat/indices?v"
+```
 You should see output indicating the presence of indices created by Filebeat.
-
-How to Install Elastic Stack on Ubuntu 24.04 LTS 37
 You can access it using browser using http://<your-server-ip>:9200/_cat/indices?v
+
+#### check if this section is needed
+Enable the system module, which collects log data from the local system.
+sudo filebeat modules enable system
+
+Set up Filebeat to load the index template into Elasticsearch.
+sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["0.0.0.0:9200"]'
+
 
 ### Sources:
 1. https://www.youtube.com/watch?v=GZudei1xTnc
