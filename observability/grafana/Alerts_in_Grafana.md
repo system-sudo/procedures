@@ -4,8 +4,9 @@
 1. Open Microsoft Teams.
 2. Go to the channel where you want to receive alerts. (Channel should be public to receive notification)
 <img width="263" height="308" alt="image" src="https://github.com/user-attachments/assets/debc2b0d-60c9-404e-aa52-de3717c4e731" />
+
 3. Click the three dots (⋯) next to the channel name → Workflows.
-4. 4. Give it a name (e.g., "Grafana Alerts").
+4. Give it a name (e.g., "Grafana Alerts").
 5. Click Add workflow, and copy the Webhook URL provided.
 
 ### ⚙️ Step 2: Add Microsoft Teams as a Contact Point in Grafana  
