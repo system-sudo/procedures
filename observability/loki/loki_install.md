@@ -77,5 +77,11 @@ sudo systemctl restart loki
 ```sh
 sudo systemctl status loki
 ```
+### 10. Check Loki logs (for any Errors):
+Loki logs errors before crashing:
+```sh
+sudo journalctl -u loki.service --no-pager | tail -n 50
+```
+
 #### Sources:
 https://awstip.com/setting-up-loki-for-log-aggregation-a-complete-guide-b639c4bf56e5
