@@ -69,7 +69,6 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 sudo systemctl enable loki
 sudo systemctl start loki
-sudo systemctl status loki
 ```
 #### 9.Verify that Loki is running.
 ```sh
