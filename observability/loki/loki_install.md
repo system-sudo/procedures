@@ -54,11 +54,13 @@ Add the following content to the file.
 [Unit]
 Description=Loki Log Aggregation System
 After=network.target
+
 [Service]
 User=root
 ExecStart=/usr/local/bin/loki --config.file=/root/loki-local-config.yaml
 Restart=always
 LimitNOFILE=65536
+
 [Install]
 WantedBy=multi-user.target
 ```
