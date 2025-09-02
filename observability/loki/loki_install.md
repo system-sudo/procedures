@@ -71,5 +71,5 @@ sudo systemctl status loki
 ```sh
 sudo systemctl status loki
 ```
-
+#### Sources:
 https://awstip.com/setting-up-loki-for-log-aggregation-a-complete-guide-b639c4bf56e5
