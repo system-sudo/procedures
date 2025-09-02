@@ -32,7 +32,9 @@ sudo chmod +x /usr/local/bin/loki
 ```
 #### 5. Download configuration file for Loki.
 Use the Git references that match your downloaded Loki version to get the correct configuration file.  
-For example, if you are using Loki version 3.4.1, you need to use the https://raw.githubusercontent.com/grafana/loki/v3.4.1/cmd/loki/loki-local-config.yaml URL to download the configuration file.  
+For example, if you are using Loki version 3.4.1,  
+you need to use the https://raw.githubusercontent.com/grafana/loki/v3.4.1/cmd/loki/loki-local-config.yaml URL to download the configuration file.  
+This main option get the latest:
 ```sh
 wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-config.yaml
 ```
