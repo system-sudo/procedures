@@ -65,4 +65,4 @@ frontend:
   encoding: protobuf
 
 #analytics:
-#  reporting_enabled: false
+#reporting_enabled: false
