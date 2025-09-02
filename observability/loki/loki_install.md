@@ -42,8 +42,6 @@ wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-con
 ```sh
 loki -version
 ```
-Check Loki’s metrics endpoint:  
-http://ip:3100/metrics
 #### 7: Setup Loki as service.
 Create a systemd unit file.
 ```sh
@@ -77,6 +75,8 @@ sudo systemctl restart loki
 ```sh
 sudo systemctl status loki
 ```
+Check Loki’s metrics endpoint:  
+http://ip:3100/metrics
 ### 10. Check Loki logs (for any Errors):
 Loki logs errors before crashing:
 ```sh
