@@ -72,6 +72,9 @@ sudo systemctl start loki
 ```
 #### 9.Verify that Loki is running.
 ```sh
+sudo systemctl restart loki
+```
+```sh
 sudo systemctl status loki
 ```
 #### Sources:
