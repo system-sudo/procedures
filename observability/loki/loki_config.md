@@ -51,7 +51,7 @@ ingester:
 
 compactor:
   working_directory: /tmp/loki/compactor
-  shared_store: filesystem
+  #shared_store: filesystem
 
 pattern_ingester:
   enabled: true
