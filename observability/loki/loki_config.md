@@ -1,3 +1,4 @@
+```
 auth_enabled: false
 
 server:
@@ -66,3 +67,4 @@ frontend:
 
 #analytics:
 #reporting_enabled: false
+```
