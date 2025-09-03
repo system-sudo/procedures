@@ -1,5 +1,5 @@
 ## Setup Loki as a service in Linux.
-### Always refer Official Documentation:  
+### Recommended to follow Official Documentation:
 ```
 https://grafana.com/docs/loki/latest/setup/install/local/
 ```
