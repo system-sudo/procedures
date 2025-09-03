@@ -67,29 +67,25 @@ https://grafana.com/docs/alloy/latest/configure/linux/
 ```sh
 sudo vi /etc/alloy/config.alloy.
 ```
-reload the configuration file:
-```sh
-sudo systemctl reload alloy
-```
 #### To change the configuration file used by the service, perform the following steps:
-
 default configuration file at /etc/alloy/config.alloy.
 change it to 
 ```sh
 CONFIG_FILE="/opt/alloy"
 ```
-Restart the Alloy service:
-```sh
-sudo systemctl restart alloy
-```
-
-Edit the environment file for the service:
-
 #### Expose the UI to other machines
 
 #### Add the following command line argument to CUSTOM_ARGS To listen on all interfaces: with 0.0.0.0.
 ```sh
 --server.http.listen-addr=0.0.0.0:12345
+```
+#### reload the configuration file:
+```sh
+sudo systemctl reload alloy
+```
+Restart the Alloy service:
+```sh
+sudo systemctl restart alloy
 ```
 
 ### To uninstall Alloy on Linux:
