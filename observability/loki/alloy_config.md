@@ -13,16 +13,8 @@ local.file_match "slow" {
   sync_period = "10s"
 }
 ```
-## 2. File permissions
-Grafana Alloy needs read access to /home/ubuntu/logs/mysql-slow.log.
-If Alloy runs as a service, it might not have permission to read files in your home folder.
-Run:
-```bash
-chmod +r /home/ubuntu/logs/mysql-slow.log
-```
-Or move the logs to a folder Alloy can read from, e.g., /var/log/mysql/.
 
-## 3. tail_from_end behavior
+## 2. tail_from_end behavior
 You have:
 
 tail_from_end = false  
@@ -33,14 +25,14 @@ If you only want new entries:
 ```bash
 tail_from_end = true
 ```
-## 4. Loki endpoint
+## 3. Loki endpoint
 Make sure your Loki endpoint is reachable from the EC2 instance:
 ```bash
 curl -v http://18.209.166.209:3100/loki/api/v1/push
 ```
 You should get a 405 Method Not Allowed (normal for GET requests).
 
-## 5. Full corrected config
+## 4. Basic Alloy config
 ```bash
 local.file_match "slow" {
   path_targets = [{
@@ -52,7 +44,7 @@ local.file_match "slow" {
 
 loki.source.file "slow" {
   targets       = local.file_match.slow.targets
-  tail_from_end = true
+  tail_from_end = false
   forward_to    = [loki.write.slow.receiver]
 }
 
@@ -62,7 +54,7 @@ loki.write "slow" {
   }
 }
 ```
-## 6. Logging Alloy startup errors to a file
+## 5. Logging Alloy startup errors to a file
 Edit the systemd unit override:
 
 ```bash
