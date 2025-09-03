@@ -1,6 +1,8 @@
 ## Setup Loki as a service in Linux.
 ### Always refer Official Documentation:  
+```
 https://grafana.com/docs/loki/latest/setup/install/local/
+```
 ### 1: Create a new directory to store Loki binary and configuration file.
 ```sh
 sudo mkdir /opt/loki
@@ -39,7 +41,9 @@ This main option get the latest official Loki Config:
 wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-config.yaml
 ```
 ##### This is modified Loki Config:
+```
 https://github.com/system-sudo/procedures/blob/main/observability/loki/loki_config.md
+```
 #### 6. To verify installation, we can check Loki version.
 ```sh
 loki -version
