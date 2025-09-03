@@ -91,3 +91,6 @@ sudo journalctl -u loki.service --no-pager | tail -n 50
 
 #### Sources:
 https://awstip.com/setting-up-loki-for-log-aggregation-a-complete-guide-b639c4bf56e5
+
+For Webinar from Grafana on Loki
+https://grafana.com/go/webinar/getting-started-with-logging-and-grafana-loki/?pg=webinar-scaling-and-securing-your-logs-with-grafana-loki&plcmt=related-sidebar-2
