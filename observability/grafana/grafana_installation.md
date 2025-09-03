@@ -48,5 +48,10 @@ Password: admin (you’ll be prompted to change it on first login)
 Get Prebuild Grafana Dashboards from:
 https://grafana.com/grafana/dashboards/
 
+### Sources
+https://www.youtube.com/watch?v=0B-yQdSXFJE
+
+https://www.youtube.com/watch?v=Xa3mCIdsno4
+
 
 
