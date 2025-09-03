@@ -1,3 +1,24 @@
+## ✅ Basic Recommendeds for Loki
+
+### 1. To check Loki's long-term storage size  
+you can inspect the directory where Loki stores its data. Based on your config  
+If Loki is using the filesystem as its object store, the path should be :
+```
+/tmp/loki
+```
+
+### 🧾 Command to Check Storage Size  
+This will give you the total size of the Loki storage directory in a human-readable format (e.g., MB/GB).
+```
+du -sh /tmp/loki
+```
+
+### If you want to see a breakdown of subdirectories (like chunks, rules, compactor, etc.), use:
+```sh
+du -sh /tmp/loki/*
+```
+
+### 2. Modified Loki Config
 ```
 auth_enabled: false
 
