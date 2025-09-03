@@ -55,6 +55,7 @@ limits_config:
   metric_aggregation_enabled: true
   enable_multi_variant_queries: true
   allow_structured_metadata: false
+  #max_streams_per_user: 200000
 
 schema_config:
   configs:
