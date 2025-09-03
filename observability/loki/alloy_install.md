@@ -1,2 +1,71 @@
-.
+## Install Grafana Alloy on Linux
+Follow Offcial Documentaion:
+```
+https://grafana.com/docs/alloy/latest/set-up/install/linux/
+```
 
+### You can install Alloy as a systemd service on Linux.
+
+#### Install GPG in your Linux Virtual Machine: (If GPG is not installed by default)
+```sh
+sudo apt install gpg
+```
+
+### To install Alloy on Linux:
+
+#### 1. Import the GPG key and add the Grafana package repository.
+```sh
+sudo mkdir -p /etc/apt/keyrings/
+wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+```
+#### 2. Update the repositories.
+```sh
+sudo apt-get update
+```
+#### 3. Install Alloy.
+```sh
+sudo apt-get install alloy
+```
+
+### Run Grafana Alloy on Linux:
+
+#### To start Alloy, run the following command.
+```sh
+sudo systemctl start alloy
+```
+#### To verify that the service is running, run the following command.
+```sh
+sudo systemctl status alloy
+```
+#### Configure Alloy to start at boot.
+```sh
+sudo systemctl enable alloy.service
+```
+#### Restart Alloy
+```sh
+sudo systemctl restart alloy
+```
+#### Stop Alloy
+```sh
+sudo systemctl stop alloy
+```
+#### To view Alloy log files:
+```sh
+sudo journalctl -u alloy
+```
+
+### To uninstall Alloy on Linux:
+
+#### 1. Stop the systemd service for Alloy.
+```sh
+sudo systemctl stop alloy
+```
+#### 2. Uninstall Alloy.
+```sh
+sudo apt-get remove alloy
+```
+#### 3. Optional: Remove the Grafana repository.
+```sh
+sudo rm -i /etc/apt/sources.list.d/grafana.list
+```
