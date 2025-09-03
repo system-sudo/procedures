@@ -5,81 +5,74 @@ cd /opt/alloy
 ```
 #### All Alloy Configs should end with .alloy
 ```sh
-sudo vi error.alloy
+sudo vi laravel.alloy
 ```
 #### Paste the following:
 ```sh
-local.file_match "apache_errors11" {
+local.file_match "laravels11" {
   path_targets = [
-    { __path__ = "/var/log/apache2/error.log" }, // adjust if needed
+    { "__path__" = "/var/www/html/tracker-backend-v2/storage/logs/laravel-2025-09-02.log" },
   ]
   sync_period = "5s"
 }
 
-loki.source.file "apache_errors11" {
-  targets       = local.file_match.apache_errors11.targets
+loki.source.file "laravels11" {
+  targets       = local.file_match.laravels11.targets
   tail_from_end = false
-  forward_to    = [loki.process.apache_errors11.receiver]
+  forward_to    = [loki.process.add_labels_laravels11.receiver]
 }
 
-loki.process "apache_errors11" {
-  // Step 1: Multiline (important if PHP/Apache logs span multiple lines)
-   stage.timestamp {
-  source = "timestamp"
-  format = "Mon Jan 02 15:04:05.000000 2006"
-}
-
-
-
-  // Step 2: Parse Apache error log format with PHP warnings
-  stage.regex {
-  expression = "^\\[(?P<timestamp>.+?)\\] \\[(?P<module>.+?):(?P<level>.+?)\\] \\[pid (?P<pid>\\d+)\\] \\[client (?P<client_ip>[\\d\\.]+):(?P<client_port>\\d+)\\] PHP (?P<php_level>\\w+):\\s+(?P<message>.+?) in (?P<file>.+?) on line (?P<line>\\d+), referer: (?P<referer>.+)$"
-}
-
-
-stage.regex {
-    expression = "\\[(?P<timestamp>[^\\]]+)\\] (?P<env>[^.]+)\\.(?P<level>[A-Z]+): (?P<message>.*)"
-  }
-
-stage.regex {
-    expression = "resulted in a `(?P<status>[0-9]{3})"
-  }
-
-
-  // Step 3: Extract useful labels from fields
-  stage.labels {
-    values = {
-      level     = "",
-      client    = "",
-      file      = "",
-      status    = "",
-      env       = "",
-      php_level = "",
-    }
-  }
-
-  // Step 4: Add static labels for identification (job, host, location)
+loki.process "add_labels_laravels11" {
   stage.static_labels {
     values = {
-      job      = "apache_errors11",
-      host     = "dev-server",     // change this to actual hostname (or use ${HOSTNAME})
-      location = "/var/log/apache2",      // change this to your datacenter/region
+      job      = "laravel_logs11",
+      host     = "apps-server1",
+      location = "/var/www/html/tracker-backend-v2/storage/logs",
     }
   }
 
-  // Step 5: Map the extracted timestamp into Loki’s time
-  stage.timestamp {
-    source = "timestamp"
-    format = "Mon Jan 02 15:04:05.000000 2006"
+  //  Merge multi-line Laravel log entries
+  stage.multiline {
+    firstline = "^\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\\]"
   }
 
-  forward_to = [loki.write.apache_errors11.receiver]
+  // Extract basic Laravel log fields
+  stage.regex {
+    expression = "^\\[(?P<time>[^\\]]+)\\] (?P<env>[a-zA-Z0-9_-]+)\\.(?P<level>[A-Z]+): (?P<message>.*)$"
+  }
+
+  // Extract exception_type from message
+  stage.regex {
+    expression = ".*\\(?(?P<exception_type>[A-Za-z0-9_\\\\]+Exception).*"
+  }
+
+  //  Extract database connection error
+  stage.regex {
+    expression = ".*SQLSTATE\\[[0-9A-Z]+\\] \\[(?P<connection_code>[0-9]+)\\] (?P<connection_message>.*connections.*)"
+  }
+
+
+  // Extract MySQL/Laravel error code
+  stage.regex {
+    expression = ".*SQLSTATE\\[[0-9A-Z]+\\]: [^:]+: (?P<error_code>[0-9]+).*"
+  }
+
+  //  Extract API call (route or method) from Laravel logs
+  // Example matches:
+  //   GET /api/user
+  //   POST /api/orders
+  //   PUT /api/products/5
+  //   App\\Http\\Controllers\\UserController@index
+  stage.regex {
+    expression = ".*(?:GET|POST|PUT|DELETE) (?P<api_call>/[A-Za-z0-9/_\\-]*)|App\\\\Http\\\\Controllers\\\\(?P<controller_method>[A-Za-z0-9_@]+).*"
+  }
+
+  forward_to = [loki.write.laravels11.receiver]
 }
 
-// Step 6: Send parsed logs to Loki
-loki.write "apache_errors11" {
+loki.write "laravels11" {
   endpoint {
-    url = "http://192.168.8.62:3100/loki/api/v1/push"   // change if Loki is remote
+    url = "http://192.168.8.62:3100/loki/api/v1/push"
   }
 }
 ```
