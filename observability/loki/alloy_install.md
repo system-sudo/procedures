@@ -29,7 +29,10 @@ sudo apt-get install alloy
 ```
 
 ### Run Grafana Alloy on Linux:
-
+Follow Offcial Documentaion:
+```
+https://grafana.com/docs/alloy/latest/set-up/run/linux/
+```
 #### To start Alloy, run the following command.
 ```sh
 sudo systemctl start alloy
@@ -53,6 +56,40 @@ sudo systemctl stop alloy
 #### To view Alloy log files:
 ```sh
 sudo journalctl -u alloy
+```
+
+### Configure Grafana Alloy on Linux
+Follow Offcial Documentaion:
+```
+https://grafana.com/docs/alloy/latest/configure/linux/
+```
+#### Edit the default configuration file To configure Alloy:
+```sh
+sudo vi /etc/alloy/config.alloy.
+```
+reload the configuration file:
+```sh
+sudo systemctl reload alloy
+```
+#### To change the configuration file used by the service, perform the following steps:
+
+default configuration file at /etc/alloy/config.alloy.
+change it to 
+```sh
+CONFIG_FILE="/opt/alloy"
+```
+Restart the Alloy service:
+```sh
+sudo systemctl restart alloy
+```
+
+Edit the environment file for the service:
+
+#### Expose the UI to other machines
+
+#### Add the following command line argument to CUSTOM_ARGS To listen on all interfaces: with 0.0.0.0.
+```sh
+--server.http.listen-addr=0.0.0.0:12345
 ```
 
 ### To uninstall Alloy on Linux:
