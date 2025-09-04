@@ -53,9 +53,9 @@ sudo systemctl restart alloy
 ```sh
 sudo systemctl stop alloy
 ```
-#### To view Alloy log files:
+#### To view Alloy log files for any Errors:
 ```sh
-sudo journalctl -u alloy
+sudo journalctl -u alloy.service -f
 ```
 
 ### Configure Grafana Alloy on Linux
