@@ -1,4 +1,14 @@
+### Alloy Config to Monitor Apache Logs:
+#### Change to the Folder where /etc/default/alloy CONFIG is Pointing:
+```sh
+cd /opt/alloy
 ```
+#### All Alloy Configs should end with .alloy
+```sh
+sudo vi apache.alloy
+```
+#### Paste the following:
+```sh
 local.file_match "apache" {
   path_targets = [
     { __path__ = "/home/ubuntu/logs/access1-Copy.log" },
