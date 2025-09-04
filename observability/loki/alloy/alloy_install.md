@@ -88,6 +88,32 @@ Restart the Alloy service:
 sudo systemctl restart alloy
 ```
 
+### Alloy needs permission to read logs:
+#### 1. Give permission to read only that log File
+check who has permission for the specific log file:
+```
+sudo ls -l
+```
+Add alloy to ubuntu(perticular) Group and Adjust Permissions
+```
+sudo usermod -aG ubuntu alloy
+```
+To verify that the alloy user has been added to the ubuntu(particular) group:
+```sh
+groups alloy
+```
+Restart the Alloy service:
+```sh
+sudo systemctl restart alloy
+```
+
+#### 2. Change alloy service to run as root (Not Reccomended)
+```sh
+cd /usr/lib/systemd/system
+sudo vi alloy.service
+```
+Change User to root
+
 ### To uninstall Alloy on Linux:
 
 #### 1. Stop the systemd service for Alloy.
