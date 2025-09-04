@@ -102,6 +102,10 @@ To verify that the alloy user has been added to the ubuntu(particular) group:
 ```sh
 groups alloy
 ```
+or
+```sh
+id alloy
+```
 Restart the Alloy service:
 ```sh
 sudo systemctl restart alloy
