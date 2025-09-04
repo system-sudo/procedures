@@ -65,7 +65,7 @@ https://grafana.com/docs/alloy/latest/configure/linux/
 ```
 #### Edit the default configuration file To configure Alloy:
 ```sh
-sudo vi /etc/alloy/config.alloy.
+sudo vi /etc/default/alloy.
 ```
 #### To change the configuration file used by the service, perform the following steps:
 default configuration file at /etc/alloy/config.alloy.
