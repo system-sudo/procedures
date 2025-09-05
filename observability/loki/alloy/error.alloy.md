@@ -1,5 +1,5 @@
 ### Alloy Config to Monitor Apache Error Logs:
-#### Chnage to the Folder where /etc/default/alloy CONFIG is Pointing:
+#### Change to the Folder where /etc/default/alloy CONFIG is Pointing:
 ```sh
 cd /opt/alloy
 ```
