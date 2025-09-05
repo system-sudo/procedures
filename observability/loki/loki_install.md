@@ -36,6 +36,11 @@ sudo chmod +x /usr/local/bin/loki
 Use the Git references that match your downloaded Loki version to get the correct configuration file.  
 For example, if you are using Loki version 3.4.1,  
 you need to use the https://raw.githubusercontent.com/grafana/loki/v3.4.1/cmd/loki/loki-local-config.yaml URL to download the configuration file.  
+
+#### we can keep Config file at any place but just mention its location in service file: for now its in:
+```
+cd /opt/loki
+```
 This main option get the latest official Loki Config:
 ```sh
 wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-config.yaml
@@ -61,7 +66,7 @@ After=network.target
 
 [Service]
 User=root
-ExecStart=/usr/local/bin/loki --config.file=/root/loki-local-config.yaml
+ExecStart=/usr/local/bin/loki --config.file=/opt/loki/loki-local-config.yaml
 Restart=always
 LimitNOFILE=65536
 
