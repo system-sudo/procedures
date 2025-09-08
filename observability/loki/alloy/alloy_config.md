@@ -3,15 +3,13 @@ Without a label (like job), your logs might still be in Loki, but they’re hard
 Adding a job label makes them easier to query.
 
 Sample:
-
+In Process Block
 ```bash
-local.file_match "slow" {
-  path_targets = [{
-    __path__ = "/home/ubuntu/logs/*.log"
-    job      = "mysql-slow"
-  }]
-  sync_period = "10s"
-}
+  stage.static_labels {
+    values = {
+      job      = "apache_logs10",
+    }
+  }
 ```
 
 ## 2. tail_from_end behavior
@@ -34,23 +32,49 @@ You should get a 405 Method Not Allowed (normal for GET requests).
 
 ## 4. Basic Alloy config
 ```bash
-local.file_match "slow" {
-  path_targets = [{
-    __path__ = "/home/ubuntu/logs/*.log"
-    job      = "mysql-slow"
-  }]
-  sync_period = "10s"
+local.file_match "apache" {
+  path_targets = [
+    { __path__ = "/home/ubuntu/logs/access10a.log" },
+  ]
+  sync_period = "5s"
 }
 
-loki.source.file "slow" {
-  targets       = local.file_match.slow.targets
+loki.source.file "apache" {
+  targets       = local.file_match.apache.targets
   tail_from_end = false
-  forward_to    = [loki.write.slow.receiver]
+  forward_to    = [loki.process.add_labels.receiver]
 }
 
-loki.write "slow" {
+loki.process "add_labels" {
+  stage.multiline {
+    firstline = "^[0-9]{1,3}\\."  // Match lines starting with an IP address
+  }
+
+  stage.regex {
+    expression = "^(?P<client_ip>\\S+) \\S+ \\S+ \\[[^\\]]+\\] \\\"(?P<method>[A-Z]+) (?P<path>\\S+) [^\\\"]+\\\" (?P<status>\\d{3})"
+  }
+
+  stage.labels {
+    values = {
+      client_ip = "",
+      method    = "",
+      path      = "",
+      status    = "",
+    }
+  }
+
+  stage.static_labels {
+    values = {
+      job      = "apache_logs10",
+    }
+  }
+
+  forward_to = [loki.write.apache.receiver]
+}
+
+loki.write "apache" {
   endpoint {
-    url = "http://18.209.166.209:3100/loki/api/v1/push"
+    url = "http://54.158.147.172:3100/loki/api/v1/push"
   }
 }
 ```
