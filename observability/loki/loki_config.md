@@ -79,8 +79,6 @@ compactor:
   retention_period: 336h  # 14 days in hours
   #shared_store: filesystem
 
-  #shared_store: filesystem
-
 pattern_ingester:
   enabled: true
   metric_aggregation:
