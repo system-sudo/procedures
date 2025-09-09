@@ -55,6 +55,7 @@ limits_config:
   metric_aggregation_enabled: true
   enable_multi_variant_queries: true
   allow_structured_metadata: false
+  retention_period: 336h  # 14 days in hours
   #max_streams_per_user: 10000 #Limits the maximum number of log streams a single user can query at once. Each unique combination of labels (like job, client_ip, status_code, etc.) creates a separate stream. If a query matches too many streams, it can overload Loki.
   #max_series_per_query: 1000 #Limits the maximum number of time series that a single query can return. Each unique label combination becomes a separate series. If your query returns more than 1000 series (e.g., too many unique client_ips), Loki will reject it with the error you saw.
 
@@ -76,7 +77,7 @@ ingester:
 compactor:
   working_directory: /tmp/loki/compactor
   retention_enabled: true
-  retention_period: 336h  # 14 days in hours
+  delete_request_store: filesystem
   #shared_store: filesystem
 
 pattern_ingester:
