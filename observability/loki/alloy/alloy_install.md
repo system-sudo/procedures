@@ -77,7 +77,7 @@ CONFIG_FILE="/opt/alloy"
 
 #### Add the following command line argument to CUSTOM_ARGS To listen on all interfaces: with 0.0.0.0.
 ```sh
---server.http.listen-addr=0.0.0.0:12345
+CUSTOM_ARGS="--server.http.listen-addr=0.0.0.0:12345"
 ```
 #### reload the configuration file:
 ```sh
