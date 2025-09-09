@@ -75,6 +75,10 @@ ingester:
 
 compactor:
   working_directory: /tmp/loki/compactor
+  retention_enabled: true
+  retention_period: 336h  # 14 days in hours
+  #shared_store: filesystem
+
   #shared_store: filesystem
 
 pattern_ingester:
