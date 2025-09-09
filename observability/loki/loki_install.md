@@ -41,6 +41,10 @@ you need to use the https://raw.githubusercontent.com/grafana/loki/v3.4.1/cmd/lo
 ```
 cd /opt/loki
 ```
+Create a File for Loki Config:
+```sh
+sudo vi loki-local-config.yaml
+```
 This main option get the latest official Loki Config:
 ```sh
 wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-config.yaml
