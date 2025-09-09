@@ -28,7 +28,7 @@ sudo unzip loki-linux-amd64.zip
 ```
 #### 4: Make Loki Executable and Move to System Path
 ```sh
-chmod +x loki-linux-amd64
+sudo chmod +x loki-linux-amd64
 sudo mv loki-linux-amd64 /usr/local/bin/loki
 sudo chmod +x /usr/local/bin/loki
 ```
