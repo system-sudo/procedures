@@ -30,7 +30,16 @@ curl -v http://18.209.166.209:3100/loki/api/v1/push
 ```
 You should get a 405 Method Not Allowed (normal for GET requests).
 
-## 4. Basic Alloy config
+## 4. Basic Alloy config  
+Move to CONFIG Location:
+```sh
+cd /opt/alloy
+```
+Create a File FILENAME.alloy
+```sh
+sudo vi apache.alloy
+```
+Paste the following:
 ```bash
 local.file_match "apache" {
   path_targets = [
