@@ -38,7 +38,7 @@ stage.regex {
  
 stage.static_labels {
     values = {
-      job         = "error_logs_static",
+      job         = "error_logs",
     }
   }
  
