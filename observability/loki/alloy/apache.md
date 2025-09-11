@@ -1,4 +1,4 @@
-### Alloy Config to Monitor Apache Logs:
+### Alloy Config to Monitor Apache Access Logs:
 #### Change to the Folder where /etc/default/alloy CONFIG is Pointing:
 ```sh
 cd /opt/alloy
