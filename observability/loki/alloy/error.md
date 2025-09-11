@@ -51,3 +51,12 @@ loki.write "apache_error_logs" {
   }
 }
 ```
+#### Restart Alloy
+```sh
+sudo systemctl restart alloy
+sudo systemctl status alloy
+```
+#### To view Alloy log files for any Errors:
+```sh
+sudo journalctl -u alloy.service -f
+```
