@@ -1,3 +1,13 @@
+### Alloy Config to Monitor Apache Error Logs:
+#### Change to the Folder where /etc/default/alloy CONFIG is Pointing:
+```sh
+cd /opt/alloy
+```
+#### All Alloy Configs should end with .alloy
+```sh
+sudo vi error.alloy
+```
+#### Paste the following:
 ```
 local.file_match "apache_error_logs" {
   path_targets = [{ "__path__" = "/home/ubuntu/error/error8.log" }]
