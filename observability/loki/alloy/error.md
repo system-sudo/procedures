@@ -21,12 +21,11 @@ loki.source.file "apache_error_logs" {
 }
  
 loki.process "add_apache_error_logs" {
- 
-stage.multiline {
+  stage.multiline {
     firstline     = "^\\[[A-Za-z]{3} [A-Za-z]{3} [ 0-9]{2} [0-9:.]+ [0-9]{4}\\]"
   }
  
-stage.regex {
+  stage.regex {
     expression = "^\\[(?P<timestamp>[^\\]]+)\\] \\[(?P<module>[^:]+):(?P<level>[^\\]]+)\\] \\[pid (?P<pid>[0-9]+)\\]( \\[client (?P<client_ip>[0-9.]+): (?P<port>[0-9]+)\\])? (?P<error_code>AH[0-9]+): (?P<message>.*)"
   }
  
@@ -36,7 +35,7 @@ stage.regex {
     }
   }
  
-stage.static_labels {
+  stage.static_labels {
     values = {
       job         = "error_logs",
     }
