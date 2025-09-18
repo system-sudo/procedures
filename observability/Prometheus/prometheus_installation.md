@@ -67,8 +67,8 @@ Type=simple
 ExecStart=/usr/local/bin/prometheus \
   --config.file=/etc/prometheus/prometheus.yml \
   --storage.tsdb.path=/var/lib/prometheus \
-  --storage.tsdb.retention.time=7d \
-  --storage.tsdb.retention.size=8GB
+  --storage.tsdb.retention.time=14d \
+  --storage.tsdb.retention.size=16GB
 
 [Install]
 WantedBy=multi-user.target
