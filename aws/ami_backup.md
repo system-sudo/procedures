@@ -51,7 +51,7 @@ Go to IAM → Roles → Create Role
 Name it something like VMImportExportRole
  
 ## Attach Policy to Role
-Create a custom policy and attach it to the role:
+Create a custom policy INLINE and attach it to the role:
 ```
  
 {
