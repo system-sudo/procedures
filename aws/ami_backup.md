@@ -3,35 +3,15 @@
 This guide explains how to export an EC2 instance and store it as a **VMDK** file in an **S3 bucket**.  
 Storing EC2 Instance as .vmdk file in S3 is less cost than snapshots.
  
----
- 
-## Stop the EC2 Instance
+## 1. Stop the EC2 Instance
 Before exporting, stop the instance. Replace the instance ID with yours.
- 
 ```
 aws ec2 stop-instances --instance-ids i-0abcd1234efgh567
- 
 ```
-## Create an IAM User
- 
-```
-Open AWS Console → IAM → Users → Add user
- 
-Enter a username (example: backup-user)
- 
-Select Programmatic access (CLI access)
- 
-Attach permissions (we’ll add a custom policy later)
- 
-Download and store the Access Key ID and Secret Key
- 
-```
-## Create IAM Role for Export
- 
+## 2. Create IAM Role for Export
 ```
 Go to IAM → Roles → Create Role
 ```
- 
 ## Choose Custom trust policy and paste:
  
 ```
@@ -47,14 +27,16 @@ Go to IAM → Roles → Create Role
     }
   ]
 }
- 
 ```
 Name it something like VMImportExportRole
- 
+
 ## Attach Policy to Role
+
+```
+Go to IAM → Roles → Add Permission → Create Inline Policy
+```
 Create a custom policy INLINE and attach it to the role:
 ```
- 
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -83,10 +65,11 @@ Create a custom policy INLINE and attach it to the role:
     }
   ]
 }
- 
 ```
-## Give IAM User Permissions
-Edit the inline policy for your IAM user and add:
+## Create a policy for IAM user
+```
+Go to IAM → policy → Create policy
+Paste the following in json
 ```
 {
   "Version": "2012-10-17",
@@ -116,8 +99,23 @@ Edit the inline policy for your IAM user and add:
     }
   ]
 }
+```
+## Create an IAM User
  
 ```
+Open AWS Console → IAM → Users → Add user
+Enter a username (example: backup-user)
+Set permissions → Attach policies directly → Filter by Type (Custom Managed)
+
+## Create an Access Key for the IAM User
+
+Select Programmatic access (CLI access)
+Download and store the Access Key ID and Secret Key
+```
+
+ 
+
+
 ## Create an S3 Bucket
  
 ```
