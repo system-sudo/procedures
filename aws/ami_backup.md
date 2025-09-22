@@ -1,6 +1,7 @@
 # Backup EC2 Instance to S3 in .VMDK Format
  
-This guide explains how to export an EC2 instance and store it as a **VMDK** file in an **S3 bucket**.
+This guide explains how to export an EC2 instance and store it as a **VMDK** file in an **S3 bucket**.  
+Storing EC2 Instance as .vmdk file in S3 is less cost than snapshots.
  
 ---
  
