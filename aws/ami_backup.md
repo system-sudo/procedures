@@ -125,7 +125,9 @@ Go to S3 → Create bucket
 Example bucket name: newtestvmi
  
 Ensure the region matches your EC2 instance region
- 
+ ACLs enabled
+Object Ownership
+Object writer
 ```
 ## Update Bucket ACL
  
