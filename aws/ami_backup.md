@@ -157,10 +157,9 @@ aws ec2 create-instance-export-task \
     --instance-id i-0abcd1234efgh567 \
     --target-environment vmware \
     --export-to-s3-task '{
-        "ContainerFormat": "ova",
         "DiskImageFormat": "VMDK",
         "S3Bucket": "newtestvmi",
-        "S3Prefix": "vms/"
+        "S3Prefix": "ec2vmdkbackup/"
     }'
 ```
 ## Monitor Export Progress
