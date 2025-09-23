@@ -40,26 +40,29 @@ Before exporting, stop the instance. Replace the instance ID with yours.
 ```sh
 aws ec2 stop-instances --instance-ids i-0abcd1234efgh567
 ```
-## 3. Create IAM Role for Export
+## 3. Create IAM Role named vmimport for Export
 ```
 Go to IAM → Roles → Create Role
 ```
 ## Choose Custom trust policy and paste:
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "vmie.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
+   "Version": "2012-10-17",		 	 	 
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Principal": { "Service": "vmie.amazonaws.com" },
+         "Action": "sts:AssumeRole",
+         "Condition": {
+            "StringEquals":{
+               "sts:Externalid": "vmimport"
+            }
+         }
+      }
+   ]
 }
 ```
-Name it something like VMImportExportRole
+Name it as vmimport
 
 ## Attach Policy to Role
 ```
@@ -68,32 +71,45 @@ Go to IAM → Roles → Add Permission → Create Inline Policy
 Create a custom policy INLINE and attach it to the role:
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:GetBucketLocation",
-        "s3:GetObject",
-        "s3:PutObject",
-        "s3:GetBucketAcl"
-      ],
-      "Resource": [
-        "arn:aws:s3:::newtestvmi",
-        "arn:aws:s3:::newtestvmi/*"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:ModifySnapshotAttribute",
-        "ec2:CopySnapshot",
-        "ec2:RegisterImage",
-        "ec2:Describe*"
-      ],
-      "Resource": "*"
-    }
-  ]
+   "Version": "2012-10-17",		 	 	 
+   "Statement":[
+      {
+         "Effect": "Allow",
+         "Action": [
+            "s3:GetBucketLocation",
+            "s3:GetObject",
+            "s3:ListBucket" 
+         ],
+         "Resource": [
+            "arn:aws:s3:::amzn-s3-demo-import-bucket",
+            "arn:aws:s3:::amzn-s3-demo-import-bucket/*"
+         ]
+      },
+      {
+         "Effect": "Allow",
+         "Action": [
+            "s3:GetBucketLocation",
+            "s3:GetObject",
+            "s3:ListBucket",
+            "s3:PutObject",
+            "s3:GetBucketAcl"
+         ],
+         "Resource": [
+            "arn:aws:s3:::amzn-s3-demo-export-bucket",
+            "arn:aws:s3:::amzn-s3-demo-export-bucket/*"
+         ]
+      },
+      {
+         "Effect": "Allow",
+         "Action": [
+            "ec2:ModifySnapshotAttribute",
+            "ec2:CopySnapshot",
+            "ec2:RegisterImage",
+            "ec2:Describe*"
+         ],
+         "Resource": "*"
+      }
+   ]
 }
 ```
 ## 4a. Create a policy for IAM user
@@ -103,30 +119,51 @@ Go to IAM → policy → Create policy
 Paste the following in json
 ```
 {
-  "Version": "2012-10-17",
+  "Version": "2012-10-17",		 	 	 
   "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateInstanceExportTask",
-        "ec2:DescribeInstances",
-        "ec2:DescribeExportTasks"
-      ],
-      "Resource": "*"
-    },
     {
       "Effect": "Allow",
       "Action": [
         "s3:GetBucketLocation",
         "s3:GetObject",
-        "s3:PutObject",
-        "s3:PutObjectAcl",
-        "s3:ListBucket"
+        "s3:PutObject"
       ],
       "Resource": [
-        "arn:aws:s3:::newtestvmi",
-        "arn:aws:s3:::newtestvmi/*"
+        "arn:aws:s3:::amzn-s3-demo-import-bucket",
+        "arn:aws:s3:::amzn-s3-demo-import-bucket/*",
+        "arn:aws:s3:::amzn-s3-demo-export-bucket",
+        "arn:aws:s3:::amzn-s3-demo-export-bucket/*"
       ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CancelConversionTask",
+        "ec2:CancelExportTask",
+        "ec2:CreateImage",
+        "ec2:CreateInstanceExportTask",
+        "ec2:CreateTags",
+        "ec2:DescribeConversionTasks",
+        "ec2:DescribeExportTasks",
+        "ec2:DescribeExportImageTasks",
+        "ec2:DescribeImages",
+        "ec2:DescribeInstanceStatus",
+        "ec2:DescribeInstances",
+        "ec2:DescribeSnapshots",
+        "ec2:DescribeTags",
+        "ec2:ExportImage",
+        "ec2:ImportInstance",
+        "ec2:ImportVolume",
+        "ec2:StartInstances",
+        "ec2:StopInstances",
+        "ec2:TerminateInstances",
+        "ec2:ImportImage",
+        "ec2:ImportSnapshot",
+        "ec2:DescribeImportImageTasks",
+        "ec2:DescribeImportSnapshotTasks",
+        "ec2:CancelImportTask"
+      ],
+      "Resource": "*"
     }
   ]
 }
@@ -156,7 +193,7 @@ aws configure
 ```
 use the above created Access Key of IAM User
 
-## Start the Export Task
+## 5a.Start the Export Task for instance:
 Run the command to start export:
 ```
 aws ec2 create-instance-export-task \
@@ -175,4 +212,26 @@ Check the export task status:
 aws ec2 describe-export-tasks \
     --query "ExportTasks[*].{Description:Description,ExportTaskId:ExportTaskId,State:State,S3Bucket:ExportToS3Task.S3Bucket,InstanceId:InstanceExportDetails.InstanceId}" \
     --output table
+```
+## 5b.Start the Export Task for AMI:
+Run the command to start export:
+```
+aws ec2 export-image \
+    --description "$(date '+%b %d %H:%M') My image export" \
+    --image-id ami-1234567890abcdef0 \
+    --disk-image-format VMDK \
+    --s3-export-location S3Bucket=amzn-s3-demo-export-bucket,S3Prefix=exports/
+```
+## Monitor Export Progress
+Check the export task status:
+```
+aws ec2 describe-export-image-tasks \
+  --query "ExportImageTasks[*].{\
+    Description:Description,\
+    ExportImageTaskId:ExportImageTaskId,\
+    ImageId:ImageId,\
+    Status:Status,\
+    Progress:Progress,\
+    S3Bucket:S3ExportLocation.S3Bucket}" \
+  --output table
 ```
