@@ -14,7 +14,7 @@ Storing EC2 Instance as .vmdk file in S3 is less cost than snapshots.
 
 (The "vmimport" role is not attached to a specific user or EC2 instance—it is a service role that the AWS VM Import/Export service itself assumes to perform tasks on behalf of the account during the VM import or export process.)
 
-## Create an S3 Bucket to store the .VMDK backup file
+## 1. Create an S3 Bucket to store the .VMDK backup file
 ```sh
 Go to S3 → Create bucket
  
@@ -39,12 +39,12 @@ Or Use Common for all canonical account ID:
 ```sh
 All other Regions – c4d8eabf8db69dbe46bfe0e517100c554f01200b104d59cd408e777ba442a322 
 ```
-## 1. Stop the EC2 Instance
+## 2. Stop the EC2 Instance
 Before exporting, stop the instance. Replace the instance ID with yours.
 ```sh
 aws ec2 stop-instances --instance-ids i-0abcd1234efgh567
 ```
-## 2. Create IAM Role for Export
+## 3. Create IAM Role for Export
 ```
 Go to IAM → Roles → Create Role
 ```
@@ -100,7 +100,7 @@ Create a custom policy INLINE and attach it to the role:
   ]
 }
 ```
-## Create a policy for IAM user
+## 4a. Create a policy for IAM user
 ```
 Go to IAM → policy → Create policy
 ```
@@ -135,7 +135,7 @@ Paste the following in json
   ]
 }
 ```
-## Create an IAM User
+## 4b.Create an IAM User
 ```
 Open AWS Console → IAM → Users → Add user
 Enter a username (example: backup-user)
@@ -146,7 +146,7 @@ Set permissions → Attach policies directly → Filter by Type (Custom Managed)
 Select Programmatic access (CLI access)
 Download and store the Access Key ID and Secret Key
 ```
-## Open a Terminal
+## 5. Open a Terminal
 Install AWS CLI
 To install the AWS CLI, run the following commands.
 ```
