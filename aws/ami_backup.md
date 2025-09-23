@@ -1,7 +1,7 @@
 # Backup EC2 Instance to S3 in .VMDK Format
 ## Recommended to follow official Documentation:
 ```
-https://docs.aws.amazon.com/vm-import/latest/userguide/required-permissions.html#vmimport-role
+https://docs.aws.amazon.com/vm-import/latest/userguide/what-is-vmimport.html
 ```
  
 This guide explains how to export an EC2 instance and store it as a **VMDK** file in an **S3 bucket**.  
