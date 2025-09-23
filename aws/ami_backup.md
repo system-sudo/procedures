@@ -35,10 +35,6 @@ Add the Region-specific canonical account ID for your region
 ```sh
 https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport-prerequisites.html
 ```
-Or Use Common for all canonical account ID:
-```sh
-All other Regions – c4d8eabf8db69dbe46bfe0e517100c554f01200b104d59cd408e777ba442a322 
-```
 ## 2. Stop the EC2 Instance
 Before exporting, stop the instance. Replace the instance ID with yours.
 ```sh
