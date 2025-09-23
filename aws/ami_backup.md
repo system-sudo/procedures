@@ -7,6 +7,13 @@ https://docs.aws.amazon.com/vm-import/latest/userguide/required-permissions.html
 This guide explains how to export an EC2 instance and store it as a **VMDK** file in an **S3 bucket**.  
 Storing EC2 Instance as .vmdk file in S3 is less cost than snapshots.
 
+## Prerequisites
+1. S3 Bucket - to store the Backup file
+2. IAM User with Policy - to perform the Backup actions and logged in using Access Key
+3. IAM Role with Policy - to perform the Backup actions (background)
+
+(The "vmimport" role is not attached to a specific user or EC2 instance—it is a service role that the AWS VM Import/Export service itself assumes to perform tasks on behalf of the account during the VM import or export process.)
+
 ## Create an S3 Bucket to store the .VMDK backup file
 ```sh
 Go to S3 → Create bucket
