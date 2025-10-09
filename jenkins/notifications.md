@@ -30,7 +30,7 @@ For setup instructions and advanced options, refer to the Jenkins plugin documen
 
 Create a Channel in MSTeams  
 Click Manage Channels -> Connectors  
-Search for Jenkins
+Search for Jenkins  
 <img width="766" height="932" alt="image" src="https://github.com/user-attachments/assets/ce59468f-6083-498a-84ec-be579777f10f" />
 
 #### Description
