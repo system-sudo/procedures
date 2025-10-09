@@ -25,3 +25,16 @@ and add the generated webhook URL to the job configuration for which you want to
 <img width="1636" height="537" alt="image" src="https://github.com/user-attachments/assets/71b63695-eb76-4627-9b52-f956156a949d" />
 Do not forget to select the AdaptiveCard format option when you add the webhook.  
 For setup instructions and advanced options, refer to the Jenkins plugin documentation: https://plugins.jenkins.io/Office-365-Connector/
+
+### Option b: Jenkins Connector
+
+Create a Channel in MSTeams  
+Click Manage Channels -> Connectors  
+Search for Jenkins
+<img width="766" height="932" alt="image" src="https://github.com/user-attachments/assets/ce59468f-6083-498a-84ec-be579777f10f" />
+
+#### Description
+The Jenkins connector sends notifications about build-related activities.  
+
+#### In Jenkins
+To use this connector, you'll need to install Office 365 Connector plugin from Jenkins update center and configure for your project by following a few easy steps.
