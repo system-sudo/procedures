@@ -37,4 +37,8 @@ Search for Jenkins
 The Jenkins connector sends notifications about build-related activities.  
 
 #### In Jenkins
-To use this connector, you'll need to install Office 365 Connector plugin from Jenkins update center and configure for your project by following a few easy steps.
+Then, install the Office 365 Connector / Power Automate Workflows plugin in Jenkins,
+<img width="1897" height="406" alt="image" src="https://github.com/user-attachments/assets/5393e79f-cc70-4569-b866-a124dec7ac01" />
+
+and add the generated webhook URL to the job configuration for which you want to receive notifications.
+<img width="1636" height="537" alt="image" src="https://github.com/user-attachments/assets/71b63695-eb76-4627-9b52-f956156a949d" />
