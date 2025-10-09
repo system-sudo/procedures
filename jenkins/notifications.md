@@ -23,7 +23,7 @@ Then, install the Office 365 Connector / Power Automate Workflows plugin in Jenk
 
 and add the generated webhook URL to the job configuration for which you want to receive notifications.
 <img width="1636" height="537" alt="image" src="https://github.com/user-attachments/assets/71b63695-eb76-4627-9b52-f956156a949d" />
-Do not forget to select the AdaptiveCard format option when you add the webhook.  
+NOTE: Do not forget to select the AdaptiveCard format option when you add the webhook.  
 For setup instructions and advanced options, refer to the Jenkins plugin documentation: https://plugins.jenkins.io/Office-365-Connector/
 
 ### Option b: Jenkins Connector
@@ -41,4 +41,5 @@ Then, install the Office 365 Connector / Power Automate Workflows plugin in Jenk
 <img width="1897" height="406" alt="image" src="https://github.com/user-attachments/assets/5393e79f-cc70-4569-b866-a124dec7ac01" />
 
 and add the generated webhook URL to the job configuration for which you want to receive notifications.
-<img width="1636" height="537" alt="image" src="https://github.com/user-attachments/assets/71b63695-eb76-4627-9b52-f956156a949d" />
+<img width="1615" height="647" alt="image" src="https://github.com/user-attachments/assets/be8fb2c5-2448-4d60-a8aa-68c27971ac28" />
+
