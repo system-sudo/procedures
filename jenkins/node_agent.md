@@ -69,7 +69,9 @@ curl -sO http://192.168.8.39:8080/jnlpJars/agent.jar
 ```sh
 java -jar agent.jar -url http://192.168.8.39:8080/ -secret 573a18cdd927d81dbadddc8470957405e48f5d7a1306dacdde6d1fa31a37afd1 -name test -webSocket -workDir "/home/jenkins"
 ```
-### You can also run Jenkins Agent as a Service
+### To run Jenkins Agent as a Service
+
+
 
 ## 🧪 Step 4: Verify Connection
 
