@@ -29,8 +29,8 @@ Go to Manage Jenkins → Nodes → New Node
 
 Fill in:
 #### Node name:
-    node-agent1 (or any name you prefer)
-    Select Permanent Agent
+node-agent1 (or any name you prefer)
+Select Permanent Agent
 
 #### Number executors:
 1 (or more, depending on CPU)
