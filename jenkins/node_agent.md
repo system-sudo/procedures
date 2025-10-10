@@ -65,13 +65,41 @@ cd /home/jenkins
 curl -sO http://192.168.8.39:8080/jnlpJars/agent.jar
 ```
 
-#### To Run the Agent
+#### To Run the Agent (Manual)
 ```sh
 java -jar agent.jar -url http://192.168.8.39:8080/ -secret 573a18cdd927d81dbadddc8470957405e48f5d7a1306dacdde6d1fa31a37afd1 -name test -webSocket -workDir "/home/jenkins"
 ```
-### To run Jenkins Agent as a Service
+### To Run Jenkins Node Agent Automatically on Boot as a Service
+```sh
+sudo nano /etc/systemd/system/jenkins-agent.service
+```
+### Paste the following:
+```sh
+[Unit]
+Description=Jenkins Agent
+After=network.target
 
+[Service]
+User=jenkins
+WorkingDirectory=/home/jenkins
+ExecStart=/usr/bin/java -jar /home/jenkins/agent.jar -jnlpUrl http://192.168.8.39:8080/computer/uat-agent/jenkins-agent.jnlp -secret <SECRET_KEY> -workDir /home/jenkins
+Restart=always
 
+[Install]
+WantedBy=multi-user.target
+```
+
+### Then enable and start:
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable jenkins-agent
+sudo systemctl start jenkins-agent
+```
+
+Check Status
+```sh
+sudo systemctl status jenkins-agent
+```
 
 ## 🧪 Step 4: Verify Connection
 
