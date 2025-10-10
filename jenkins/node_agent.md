@@ -51,14 +51,17 @@ or Launch agent via SSH (simpler setup if you can SSH from controller to agent)
 
 ## 🚀 Step 3: Agent Connects to Controller
 
-Create the Home Directory as set in the Jenkins Node Config
-mkdir /home/jenkins
-
+#### Create the working directory:
+(as set in the Jenkins Node Config)
+```sh
+mkdir -p /home/jenkins
+```
 <img width="1867" height="372" alt="image" src="https://github.com/user-attachments/assets/97952ea2-eae8-4eb6-94c0-e156cad87d48" />
 
 This will be automatically avaiable in Connect option of Jenkins Node in UI
-#### To Download the Agent
+#### Download agent jar:
 ```sh
+cd /home/jenkins
 curl -sO http://192.168.8.39:8080/jnlpJars/agent.jar
 ```
 
