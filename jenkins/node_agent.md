@@ -29,8 +29,8 @@ Go to Manage Jenkins → Nodes → New Node
 
 Fill in:
 #### Node name:
-node-agent1 (or any name you prefer)
-Select Permanent Agent
+    node-agent1 (or any name you prefer)
+    Select Permanent Agent
 
 #### Number executors:
 1 (or more, depending on CPU)
@@ -46,7 +46,7 @@ staging. (or any name you prefer - This will be used in the pipeline)
 
 #### Launch method: choose one:
 
-✅ Launch agent by connecting it to the controller (recommended, more secure)
+✅ Launch agent by connecting it to the controller (recommended, more secure)  
 or Launch agent via SSH (simpler setup if you can SSH from controller to agent)
 
 ## 🚀 Step 3: Agent Connects to Controller
