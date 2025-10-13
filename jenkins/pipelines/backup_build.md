@@ -1,7 +1,7 @@
 #### This stage:
 
-Enters the working directory.
-Creates a timestamped ZIP file of the build directory.
+Enters the working directory.  
+Creates a timestamped ZIP file of the build directory.  
 Moves the ZIP file to a backup location for safekeeping.
 
 ```sh
