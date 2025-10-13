@@ -18,7 +18,7 @@ Moves the ZIP file to a backup location for safekeeping.
         }
     }
 ```
-#### Stage : Delete
+#### Stage : Delete older backup files
 (works along with Stage : Build backup Zip)
 
 Lists all backup ZIP files in the backup directory.  
