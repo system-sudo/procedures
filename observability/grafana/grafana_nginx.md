@@ -149,7 +149,6 @@ sudo nano /etc/grafana/grafana.ini
 edit the following configuration parameters Under the [server] section:
 ```sh
 [server]
-[server]
 # Bind only to localhost — Nginx proxies connections
 http_addr = 127.0.0.1
 http_port = 3000
