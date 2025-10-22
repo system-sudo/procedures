@@ -129,7 +129,9 @@ Certificates are stored in:
 ```sh
 cd /etc/letsencrypt/live/
 ```
-### 🧾 STEP 7 — Set up symlinks to Grafana
+### 🧾 STEP 7 — Set up symlinks to Grafana (-only needed when directly using port 443 in grafana.ini)
+NOT Required when using Nginx as it already taking care of:
+-TLS/SSL encryption, Certificate renewal via Certbot, HTTP → HTTPS redirects Port 443 binding  
 
 create symbolic links (symlinks) from the Let's Encrypt SSL certificate files to the Grafana configuration directory  
 Symlinks ensure Grafana always uses the latest certificate
@@ -147,14 +149,25 @@ sudo nano /etc/grafana/grafana.ini
 edit the following configuration parameters Under the [server] section:
 ```sh
 [server]
-http_addr =
+[server]
+# Bind only to localhost — Nginx proxies connections
+http_addr = 127.0.0.1
 http_port = 3000
-domain = mysite.com # optional
-root_url = https://subdomain.mysite.com:3000
-cert_key = /etc/grafana/grafana.key
-cert_file = /etc/grafana/grafana.crt
-enforce_domain = False
-protocol = https
+
+# Domain Grafana should use in generated URLs
+domain = grafana.bellita.co.in
+
+# This ensures links and redirects use https://grafana.bellita.co.in/
+root_url = https://grafana.bellita.co.in/
+
+# If you serve Grafana from a sub-path, set true (not needed here)
+serve_from_sub_path = false
+
+# Optional
+;cert_key = /etc/grafana/grafana.key
+;cert_file = /etc/grafana/grafana.crt
+;enforce_domain = False
+;protocol = https
 ```
 
 Save and restart Grafana:
