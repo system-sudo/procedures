@@ -154,7 +154,9 @@ sudo journalctl -u prometheus.service --no-pager -n 20
 ```
 Check Nginx logs:
 ```sh
-sudo journalctl -u nginx -f
+sudo journalctl -u nginx --no-pager -n 20
+sudo tail -f /var/log/nginx/access.log
+sudo tail -f /var/log/nginx/error.log
 ```
 
 ### Source
