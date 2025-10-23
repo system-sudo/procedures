@@ -1,6 +1,6 @@
 ### Install nginx
 ```sh
-sudo apt update
+sudo apt update -y
 sudo apt install -y nginx
 sudo systemctl enable --now nginx
 ```
