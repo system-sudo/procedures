@@ -55,7 +55,7 @@ certbot --version
 #### 🅰️ Option 1 — Standard Nginx (no Cloudflare proxy)
 If your domain points directly to your server (if proxied by Cloudflare-Temporarily disable proxy):
 ```sh
-sudo certbot --nginx -d Prometheus.bellita.co.in
+sudo certbot --nginx -d prometheus.bellita.co.in
 ```
 
 Certbot runs its own temporary web server (on port 80), You do not need Nginx.
