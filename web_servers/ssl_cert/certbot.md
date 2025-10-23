@@ -2,7 +2,7 @@
 
 ### 🧱 STEP 1 — Install Snap and Core
 ```sh
-sudo apt update
+sudo apt update -y
 sudo apt-get install -y snapd
 sudo snap install core
 sudo snap refresh core
