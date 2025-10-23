@@ -20,6 +20,12 @@ This will show the last 20 lines of logs for the Prometheus service.
 sudo journalctl -u prometheus.service --no-pager -n 20
 ```
 
+### To to Validate the Prometheus.yml Config :
+This will give you a clear error message if there's a syntax or structural issue in the YAML file.
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
+
 ### If you want to monitor Prometheus server in Grafana::
 Verify metrics are available
 ```sh
