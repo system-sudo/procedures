@@ -125,7 +125,7 @@ server {
 ```
 Enable and test:
 ```sh
-sudo ln -s /etc/nginx/sites-available/grafana.bellita.co.in /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/grafana.bellita.co.in.conf /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
