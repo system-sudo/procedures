@@ -125,9 +125,13 @@ server {
 ```
 Enable and test:
 ```sh
-sudo ln -s /etc/nginx/sites-available/grafana /etc/nginx/sites-enabled/grafana
+sudo ln -s /etc/nginx/sites-available/grafana.bellita.co.in /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
+```
+Check Nginc status:
+```sh
+sudo systemctl status nginx
 ```
 
 ### 🧾 STEP 8 — Configure Grafana HTTPS and restart Grafana  
