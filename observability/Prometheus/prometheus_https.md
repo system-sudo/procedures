@@ -63,7 +63,7 @@ Certbot runs its own temporary web server (on port 80), You do not need Nginx.
 sudo certbot certonly --standalone
 ```
 
-### 🔁 STEP 6 — Test automatic renewal of SSl Cert
+### 🔁 STEP 6 — Test automatic renewal of SSL Cert
 ```sh
 sudo certbot renew --dry-run
 ```
@@ -74,7 +74,7 @@ cd /etc/letsencrypt/live/
 ```
 ### 🔁 STEP 7 Create Nginx site config for Prometheus (manual method)
 ```sh
-sudo nano /etc/nginx/sites-available/Prometheus.bellita.co.in.conf
+sudo nano /etc/nginx/sites-available/prometheus.bellita.co.in.conf
 ```
 paste the following:
 ```sh
