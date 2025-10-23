@@ -73,7 +73,7 @@ cd /etc/letsencrypt/live/
 ```
 ### 🔁 STEP 7 Create Nginx site config for Grafana (manual method)
 ```sh
-sudo nano /etc/nginx/sites-available/grafana.conf
+sudo nano /etc/nginx/sites-available/grafana.bellita.co.in.conf
 ```
 paste the following:
 ```sh
