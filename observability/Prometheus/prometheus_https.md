@@ -21,8 +21,7 @@ check status
 sudo systemctl status nginx
 ```
 
-Follow step 1 to 4 if certbot not installed.
-### 🧱 STEP 1 — Install Snap and Core
+### 🧱 STEP 1 — Install Snap and Core (if certbot not present Follow step 1 to 4)
 ```sh
 sudo apt update
 sudo apt-get install -y snapd
