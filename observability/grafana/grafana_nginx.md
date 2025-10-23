@@ -123,7 +123,7 @@ server {
     }
 }
 ```
-Enable and test: (after step 1 to 6)
+Enable and test:
 ```sh
 sudo ln -s /etc/nginx/sites-available/grafana /etc/nginx/sites-enabled/grafana
 sudo nginx -t
