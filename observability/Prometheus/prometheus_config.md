@@ -1,6 +1,6 @@
 ## ✅ Basic Recommendeds for Prometheus
 
-### 1. 🔍 To find how many days of data Prometheus stores: 
+### 🔍 To find how many days of data Prometheus stores: 
 Prometheus uses the --storage.tsdb.retention.time flag to define how long data is retained.  
 Run this command to check the current retention setting:
 ```
@@ -11,6 +11,12 @@ If this flag is not set, Prometheus defaults to 15 days.
 This will give you the total size of the prometheus storage directory in a human-readable format (e.g., MB/GB).
 ```
 du -sh /var/lib/prometheus
+```
+
+### To view the Full Prometheus Error Message:
+This will show the last 20 lines of logs for the Prometheus service.
+```
+sudo journalctl -u prometheus.service --no-pager -n 20
 ```
 
 ### If you want to monitor Prometheus server in Grafana::
