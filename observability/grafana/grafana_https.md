@@ -129,7 +129,7 @@ sudo ln -s /etc/nginx/sites-available/grafana.bellita.co.in.conf /etc/nginx/site
 sudo nginx -t
 sudo systemctl reload nginx
 ```
-Check Nginc status:
+Check Nginx status:
 ```sh
 sudo systemctl status nginx
 ```
