@@ -7,6 +7,7 @@ Run this command to check the current retention setting:
 ps aux | grep prometheus
 ```
 If this flag is not set, Prometheus defaults to 15 days.
+
 ### 📦 To check how much space is currently used:
 This will give you the total size of the prometheus storage directory in a human-readable format (e.g., MB/GB).
 ```
