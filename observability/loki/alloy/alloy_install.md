@@ -94,7 +94,7 @@ check who has permission for the specific log file:
 ```
 sudo ls -l
 ```
-Add alloy to ubuntu(perticular) Group and Adjust Permissions
+Add alloy to particular owner Group(eg.ubuntu) and Adjust Permissions
 ```
 sudo usermod -aG ubuntu alloy
 ```
