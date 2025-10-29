@@ -49,29 +49,7 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 certbot --version
 ```
 
-### 🌐 STEP 5 — Obtain your SSL certificate (via HTTP port 80)
-
-#### 🅰️ Option 1 — Standard Nginx (no Cloudflare proxy)
-If your domain points directly to your server (if proxied by Cloudflare-Temporarily disable proxy):
-```sh
-sudo certbot --nginx -d grafana.bellita.co.in
-```
-
-Certbot runs its own temporary web server (on port 80), You do not need Nginx.
-```sh
-sudo certbot certonly --standalone
-```
-
-### 🔁 STEP 6 — Test automatic renewal of SSL Cert
-```sh
-sudo certbot renew --dry-run
-```
-If it passes ✅, your certificates will auto-renew via a systemd timer (certbot.timer).
-Certificates are stored in:
-```sh
-cd /etc/letsencrypt/live/
-```
-### 🔁 STEP 7 Create Nginx site config for Grafana (manual method)
+### 🔁 STEP 5 Create Nginx site config for Grafana (manual method)
 ```sh
 sudo nano /etc/nginx/sites-available/grafana.bellita.co.in.conf
 ```
@@ -132,6 +110,29 @@ sudo systemctl reload nginx
 Check Nginx status:
 ```sh
 sudo systemctl status nginx
+```
+
+### 🌐 STEP 6 — Obtain your SSL certificate (via HTTP port 80)
+
+#### 🅰️ Option 1 — Standard Nginx (no Cloudflare proxy)
+If your domain points directly to your server (if proxied by Cloudflare-Temporarily disable proxy):
+```sh
+sudo certbot --nginx -d grafana.bellita.co.in
+```
+
+Certbot runs its own temporary web server (on port 80), You do not need Nginx.
+```sh
+sudo certbot certonly --standalone
+```
+
+### 🔁 STEP 7 — Test automatic renewal of SSL Cert
+```sh
+sudo certbot renew --dry-run
+```
+If it passes ✅, your certificates will auto-renew via a systemd timer (certbot.timer).
+Certificates are stored in:
+```sh
+cd /etc/letsencrypt/live/
 ```
 
 ### 🧾 STEP 8 — Configure Grafana HTTPS and restart Grafana  
