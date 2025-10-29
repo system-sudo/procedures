@@ -89,7 +89,7 @@ sudo systemctl restart alloy
 ```
 
 ### STEP 4: Alloy needs permission to read logs:
-#### 1. Give permission to read only that log File
+#### Option 1. Give permission to read only that log File
 check who has permission for the specific log file:
 ```
 sudo ls -l
@@ -111,7 +111,7 @@ Restart the Alloy service:
 sudo systemctl restart alloy
 ```
 
-#### 2. Change alloy service to run as root (Not Reccomended)
+#### Option 2. Change alloy service to run as root (Not Reccomended)
 ```sh
 cd /usr/lib/systemd/system
 sudo vi alloy.service
