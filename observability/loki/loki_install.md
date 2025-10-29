@@ -179,7 +179,9 @@ sudo systemctl restart loki
 sudo systemctl status loki
 ```
 Check Loki’s metrics endpoint:  
+```sh
 http://ip:3100/metrics
+```
 ### 11. Check Loki logs (for any Errors):
 Loki logs errors before crashing:
 ```sh
