@@ -11,7 +11,7 @@ https://grafana.com/docs/alloy/latest/set-up/install/linux/
 sudo apt install gpg
 ```
 
-### To install Alloy on Linux:
+### STEP 1: To install Alloy on Linux:
 
 #### 1. Import the GPG key and add the Grafana package repository.
 ```sh
@@ -28,7 +28,7 @@ sudo apt-get update
 sudo apt-get install alloy
 ```
 
-### Run Grafana Alloy on Linux:
+### STEP 2: Run Grafana Alloy on Linux:
 Follow Offcial Documentaion:
 ```
 https://grafana.com/docs/alloy/latest/set-up/run/linux/
@@ -58,7 +58,7 @@ sudo systemctl stop alloy
 sudo journalctl -u alloy.service -f
 ```
 
-### Configure Grafana Alloy on Linux
+### STEP 3: Configure Grafana Alloy on Linux
 Follow Offcial Documentaion:
 ```
 https://grafana.com/docs/alloy/latest/configure/linux/
@@ -88,7 +88,7 @@ Restart the Alloy service:
 sudo systemctl restart alloy
 ```
 
-### Alloy needs permission to read logs:
+### STEP 4: Alloy needs permission to read logs:
 #### 1. Give permission to read only that log File
 check who has permission for the specific log file:
 ```
@@ -118,7 +118,7 @@ sudo vi alloy.service
 ```
 Change User to root
 
-### To uninstall Alloy on Linux:
+### STEP 5: To uninstall Alloy on Linux:
 
 #### 1. Stop the systemd service for Alloy.
 ```sh
