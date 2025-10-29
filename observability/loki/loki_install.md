@@ -45,14 +45,16 @@ Create a File for Loki Config:
 ```sh
 sudo vi loki-local-config.yaml
 ```
+##### This is modified Loki Config:
+```
+https://github.com/system-sudo/procedures/blob/main/observability/loki/loki_basic.md
+```
+OR
 This main option get the latest official Loki Config:
 ```sh
 wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-config.yaml
 ```
-##### This is modified Loki Config:
-```
-https://github.com/system-sudo/procedures/blob/main/observability/loki/loki_config.md
-```
+
 #### 6. To verify installation, we can check Loki version.
 ```sh
 loki -version
