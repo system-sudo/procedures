@@ -43,12 +43,10 @@ cd /opt/loki
 ```
 Create a File for Loki Config:
 ```sh
-sudo vi loki-local-config.yaml
+sudo nano /opt/loki/loki-local-config.yaml
 ```
 ##### This is modified Loki Config:
-```
-https://github.com/system-sudo/procedures/blob/main/observability/loki/loki_basic.md
-```
+paste the following
 ```sh
 auth_enabled: false
 
@@ -122,7 +120,7 @@ frontend:
 #analytics:
 #reporting_enabled: false
 ```
-OR
+OR  
 This main option get the latest official Loki Config:
 ```sh
 wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-config.yaml
@@ -132,7 +130,18 @@ wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-con
 ```sh
 loki -version
 ```
-#### 7: Setup Loki as service.
+#### 7. Create a dedicated Loki user (for security)
+It’s best practice to run Loki under a non-root user.
+```sh
+sudo useradd --no-create-home --shell /usr/sbin/nologin loki
+```
+Give ownership of Loki’s working directory:
+```sh
+sudo chown -R loki:loki /opt/loki
+sudo mkdir -p /tmp/loki
+sudo chown -R loki:loki /tmp/loki
+```
+#### 8: Setup Loki as service.
 Create a systemd unit file.
 ```sh
 sudo nano /etc/systemd/system/loki.service
@@ -144,21 +153,25 @@ Description=Loki Log Aggregation System
 After=network.target
 
 [Service]
-User=root
+Type=simple
+User=loki
+Group=loki
 ExecStart=/usr/local/bin/loki --config.file=/opt/loki/loki-local-config.yaml
-Restart=always
+Restart=on-failure
+RestartSec=5
 LimitNOFILE=65536
+TimeoutStopSec=20
 
 [Install]
 WantedBy=multi-user.target
 ```
-#### 8. Enable and Start Loki.
+#### 9. Enable and Start Loki.
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable loki
 sudo systemctl start loki
 ```
-#### 9.Verify that Loki is running.
+#### 10.Verify that Loki is running.
 ```sh
 sudo systemctl restart loki
 ```
@@ -167,7 +180,7 @@ sudo systemctl status loki
 ```
 Check Loki’s metrics endpoint:  
 http://ip:3100/metrics
-### 10. Check Loki logs (for any Errors):
+### 11. Check Loki logs (for any Errors):
 Loki logs errors before crashing:
 ```sh
 sudo journalctl -u loki.service --no-pager | tail -n 50
