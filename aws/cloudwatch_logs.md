@@ -72,7 +72,6 @@ systemctl status amazon-cloudwatch-agent.service
 * Go to CloudWatch > Log Groups in the AWS Console and check for log_group_name:  
 eg:
 ubuntu-apache2-access-log
-"log_group_name": "ubuntu-apache2-error-log",
 * You should see logs streaming in under the respective log streams.
 
 ### Step 6: Common troubleshooting
