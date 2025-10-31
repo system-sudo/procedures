@@ -55,7 +55,7 @@ Open your apache Conf:
 ```sh
 sudo nano /etc/apache2/sites-available/test.trstscore.com.conf
 ```
-This is full snipset Add only BLOCK  # Use custom log format to capture real client IP:
+#### This is full snipset Add only BLOCK  # Use custom log format to capture real client IP:
 ```sh
 <VirtualHost *:443>
     ServerName test.trstscore.com
