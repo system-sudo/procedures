@@ -17,7 +17,7 @@ sudo curl -sS https://www.cloudflare.com/ips-v6 -o /var/tmp/cloudflare/ips-v6.tx
 
 remoteip conf will be created at 
 ```sh
-/etc/apache2/conf-available
+cd /etc/apache2/conf-available
 ```
 
 ```sh
