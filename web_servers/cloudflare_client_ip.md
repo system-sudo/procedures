@@ -9,8 +9,8 @@ cd /var/tmp/cloudflare
 
 ### Fetch the official Cloudflare ip lists
 ```sh
-curl -sS https://www.cloudflare.com/ips-v4 -o /var/tmp/cloudflare/ips-v4.txt
-curl -sS https://www.cloudflare.com/ips-v6 -o /var/tmp/cloudflare/ips-v6.txt
+sudo curl -sS https://www.cloudflare.com/ips-v4 -o /var/tmp/cloudflare/ips-v4.txt
+sudo curl -sS https://www.cloudflare.com/ips-v6 -o /var/tmp/cloudflare/ips-v6.txt
 ```
 
 ### Create the remoteip conf that uses CF-Connecting-IP header
