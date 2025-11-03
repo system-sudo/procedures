@@ -90,7 +90,7 @@ sudo systemctl reload apache2
 ```
 ### Verify
 ```sh
-sudo tail -n 20 /var/log/apache2/access.log
+sudo tail -f /var/log/apache2/access.log
 ```
 
 ### Updating Cloudflare IPs
