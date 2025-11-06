@@ -6,7 +6,7 @@ Setting up a reverse proxy in Nginx is straightforward using the proxy_pass dire
 
 ### 🔁 Create Nginx site config for reverse proxy (sample of grafana)
 ```sh
-sudo nano /etc/nginx/sites-available/grafana
+sudo nano /etc/nginx/sites-available/grafana.bellita.co.in.conf
 ```
 paste the following:
 ```sh
