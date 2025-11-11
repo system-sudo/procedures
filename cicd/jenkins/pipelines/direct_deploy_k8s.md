@@ -1,3 +1,4 @@
+```sh
 pipeline {
     agent any
 
@@ -96,3 +97,4 @@ pipeline {
         
     }
 }
+```
