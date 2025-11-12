@@ -142,7 +142,8 @@ jobs:
           #!/bin/bash
           set -eo pipefail
           APP_DIR="/opt/aichat-frontend"
-          SERVICE_NAME="aichat-frontend.service"
+          SERVICE_NAME_F="aichat-frontend.service"
+          SERVICE_NAME_B="aichat-backend.service"
           HEALTH_URL="${HEALTH_URL}"
           ROLLBACK_DIR=".rollback"
 
@@ -166,7 +167,8 @@ jobs:
           npm run build
 
           echo "Restarting service..."
-          systemctl restart "$SERVICE_NAME"
+          systemctl restart "$SERVICE_NAME_F"
+          systemctl restart "$SERVICE_NAME_B"
           sleep 10
 
           if [ -n "$HEALTH_URL" ]; then
@@ -179,7 +181,8 @@ jobs:
                 rm -rf .next
                 cp -r "$ROLLBACK_DIR/.next" .next
               fi
-              systemctl restart "$SERVICE_NAME"
+              systemctl restart "$SERVICE_NAME_F"
+              systemctl restart "$SERVICE_NAME_B"
               echo "Rollback complete."
               exit 2
             fi
