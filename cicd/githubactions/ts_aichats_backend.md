@@ -87,9 +87,12 @@ Adaptive Card includes:
 2. Push changes to the `staging` branch.
 3. Monitor workflow logs and Teams notifications.
 
-
-
-
+## Github Action Workflow
+### Create Github Action Workflow file
+```sh
+.github/workflows/frontend.yml
+```
+### Paste the following:
 ```yaml
 name: Deploy Python Backend to GCP VM (gcloud compute ssh)
 
