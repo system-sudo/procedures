@@ -62,5 +62,5 @@ sudo systemctl status alloy
 ```
 #### To view Alloy log files for any Errors:
 ```sh
-sudo journalctl -u alloy.service -f
+sudo journalctl -u alloy.service -n 50 --no-pager
 ```
