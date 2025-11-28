@@ -1,5 +1,7 @@
 ## To log the original client IPs instead of Cloudflare's proxy IPs in logs
 
+A) APACHE
+
 ### Create a temp dir
 ```sh
 sudo mkdir -p /etc/apache2/conf-available
