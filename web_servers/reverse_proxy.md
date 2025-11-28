@@ -1,4 +1,4 @@
- ## Nginx Reverse Proxy
+ ## Reverse Proxy
 
 Nginx as a reverse proxy acts as an intermediary server that forwards client requests to backend servers.  
 It enhances security by masking the identity and structure of backend servers and handling SSL/TLS encryption at the proxy level.  
