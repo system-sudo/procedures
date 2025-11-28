@@ -10,6 +10,11 @@ This helps improve security and prevents direct exposure of the backend API.
 sudo certbot --nginx -d apis.bellita.co.in -d back1919.bellita.co.in
 ```
 
+Use the apis certificate ONLY if it includes both DNS
+Check:
+```sh
+sudo openssl x509 -in /etc/letsencrypt/live/apis.bellita.co.in/fullchain.pem -noout -text | grep DNS
+```
 ### 2. Configure Nginx for Both Domains
 Create a configuration file in `/etc/nginx/sites-available/` (e.g., `apis.bellita.co.in.conf`):
 ```sh
