@@ -2,8 +2,9 @@
 # Masking Real API Domain Behind a Proxy Using Nginx
 
 ## Objective
-The goal is to hide the real API domain (`apis.bellita.co.in`) from the frontend and instead expose a proxy domain (`back1919.bellita.co.in`).  
-This helps improve security and prevents direct exposure of the backend API.
+The goal is to hide the real API domain (`apis.bellita.co.in`) from the frontend and instead expose a proxy domain (`back1919.bellita.co.in`). This helps improve security and prevents direct exposure of the backend API.  
+
+Note : Both domain should point same ip
 
 ### 1. Create a single certificate covering both domains
 ```sh
