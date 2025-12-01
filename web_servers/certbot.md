@@ -41,8 +41,22 @@ Certbot runs its own temporary web server (on port 80), You do not need Nginx.
 ```sh
 sudo certbot certonly --standalone
 ```
+Test SSL from Terminal
+```sh
+curl -Iv https://demo1.trstscore.com
+```
 
-### 🔁 STEP 6 — Test automatic renewal of SSl Cert
+### 🔁 STEP 6 — Test automatic renewal of SSL Cert
+Check if certbot.timer is Active.
+```sh
+sudo systemctl status certbot.timer
+```
+If not then Enable it.
+```sh
+sudo systemctl enable certbot.timer
+sudo systemctl start certbot.timer
+```
+Then Run:
 ```sh
 sudo certbot renew --dry-run
 ```
