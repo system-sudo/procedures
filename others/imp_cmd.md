@@ -1,12 +1,12 @@
 ### 1. To get the number of requests per IP address, sorted in descending order.
 Command:
-``bash
+```sh
 awk '{print $1}' access.log | sort | uniq -c | sort -rn
-``
+```
 If you still want to sort by IP:
-``bash
+```sh
 awk '{print $1}' access.log | sort -t . -k1,1n -k2,2n -k3,3n -k4,4n | uniq -c
-``
+```
 #### Step-by-Step Explanation:
 
 ##### 1. awk '{print $1}' access.log
