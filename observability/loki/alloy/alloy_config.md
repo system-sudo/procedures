@@ -111,3 +111,10 @@ Now, even if it crashes instantly, you can see:
 ```bash
 cat /var/log/alloy-startup.log
 ```
+
+## 5. Alloy tailing positions:
+Every Alloy Config is tailed and its position is recorded in:
+
+```bash
+nano /var/lib/alloy/data/loki.source.file.laravels11/positions.yml
+```
