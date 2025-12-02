@@ -26,10 +26,10 @@ awk '{print $1}' access.log | sort | uniq -c | sort -rn
 * So the IP with the highest request count appears first.
 * Result: A descending list of IPs by number of requests.
 
-##### 5. Final Output:
-41391 14.195.129.150
-40693 49.249.37.10
-36037 115.245.92.66
+##### 5. Final Output:  
+41391 14.195.129.150  
+40693 49.249.37.10  
+36037 115.245.92.66  
 ...
 
 ✅ This is a quick way to find the most active IPs hitting your server.
