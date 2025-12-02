@@ -19,7 +19,7 @@ awk '{print $1}' access.log | sort | uniq -c | sort -rn
 * uniq removes duplicate consecutive lines.
 * -c adds a count of how many times each unique IP appeared.
 * Result: Each line now shows:
-* <count> <IP>
+* [count] [IP]
 
 4. | sort -rn
 * Sorts the output numerically (-n) and in reverse order (-r).
