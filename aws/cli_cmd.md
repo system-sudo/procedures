@@ -1,7 +1,7 @@
 ### 1. Ready-to-run bash script that will show:
-✔ Instance Type, Instance ID, Availability Zone, Public IP
-✔ CPU cores
-✔ Memory (Total, Free, Available)
+✔ Instance Type, Instance ID, Availability Zone, Public IP  
+✔ CPU cores  
+✔ Memory (Total, Free, Available)  
 ✔ Disk usage
 
 #### a. Create the file:
