@@ -43,7 +43,8 @@ pip install pyyaml requests
 ```
 
 ### Save the script to a file:
-For node_exporter: 
+
+#### For node_exporter: 
 ```sh
 sudo nano install_node_exporter.py
 ```
@@ -210,7 +211,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-#### For prometheus Config Updater: 
+## For prometheus Config Updater: 
 ```sh
 sudo nano prometheus_add_target.py
 ```
