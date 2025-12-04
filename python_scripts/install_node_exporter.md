@@ -211,7 +211,7 @@ if __name__ == "__main__":
 ```
 
 ### Run the script:
-If is VENV
+If it is VENV:
 ```sh
 sudo venv/bin/python install_node_exporter.py
 ```
