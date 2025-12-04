@@ -1,4 +1,9 @@
 ## ✅ Step-by-Step: Run Node Exporter as a Service
+
+## Use this python script to runn all these task at once:
+```sh
+https://github.com/system-sudo/procedures/blob/main/python_scripts/install_node_exporter.md
+```
 ### 🧱 Prerequisites
 Linux server with internet  
 curl and tar installed
