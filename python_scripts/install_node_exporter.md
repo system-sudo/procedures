@@ -1,3 +1,54 @@
+### Python script to Automated Prometheus Node Exporter Installer + Prometheus Config Updater.
+
+## ✅ How to Use
+### prerequisites:
+* Python 3
+* PyYAML installed
+* Root permissions
+* promtool installed (for YAML validation)
+
+#### Install Python 3 Locally
+```sh
+sudo apt update
+sudo apt install -y python3 python3-pip
+```
+
+Verify Python3 Installation:
+```sh
+python3 --version
+```
+
+#### Ensure promtool exists:
+```sh
+which promtool
+```
+
+#### Install dependencies:
+Create a Virtual Environment
+```sh
+sudo apt install -y python3-venv
+```
+Then, inside your scripts directory:
+```sh
+cd /opt/devops/scripts
+python3 -m venv venv
+```
+Activate it:
+```sh
+source venv/bin/activate
+```
+Install the required modules inside the venv
+```sh
+pip install pyyaml requests
+```
+
+### Save the script to a file:
+```sh
+sudo nano install_node_exporter.py
+```
+
+copy and paste the below script
+```sh
 #!/usr/bin/env python3
 import os
 import yaml
@@ -157,3 +208,14 @@ if __name__ == "__main__":
     if os.geteuid() != 0:
         raise SystemExit("You must run this script as root (sudo).")
     main()
+```
+
+### Run the script:
+If is VENV
+```sh
+sudo venv/bin/python install_node_exporter.py
+```
+ELSE
+```sh
+sudo python3 /opt/devops/scripts/install_node_exporter.py
+```
