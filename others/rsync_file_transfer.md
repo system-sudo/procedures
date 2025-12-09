@@ -12,6 +12,10 @@ nano authorized_keys
 paste the id_ed25519.pub from server 1 here
 
 #### Use rsync to securely transfer files
+Test connectivity first:
+```sh
+ssh -o IdentitiesOnly=yes -i /home/ubuntu/.ssh/id_ed25519 ubuntu@15.207.14.245
+```
 Run from Server 1 (push model):
 ```sh
 rsync -avz --progress --partial --append-verify \
@@ -24,7 +28,18 @@ rsync -avz --dry-run --progress --partial --append-verify \
     -e "ssh -o IdentitiesOnly=yes -i /home/ubuntu/.ssh/id_ed25519" \
     /home/ubuntu/trs ubuntu@15.207.14.245:/home/ubuntu/test
 ```
-Dry Run to check what files will be transfered when we execute the cmd.
+Dry Run to check what files will be transfered when we execute the cmd.  
+
+Run from Server 2 (pull model):  
+Important Notes:
+* Ensure Server 2 has the private key (id_ed25519) in /home/ubuntu/.ssh/
+* If the key is only on Server 1, you need to copy it securely to Server 2
+```sh
+rsync -avz --progress --partial --append-verify \
+    -e "ssh -o IdentitiesOnly=yes -i /home/ubuntu/.ssh/id_ed25519" \
+    ubuntu@13.233.25.164:/home/ubuntu/trs /home/ubuntu/test
+```
+
 
 #### Step-by-Step Explanation:
 
