@@ -1,4 +1,4 @@
-### 1. To get the number of requests per IP address, sorted in descending order.
+### To get the number of requests per IP address, sorted in descending order.
 Command:
 ```sh
 awk '{print $1}' access.log | sort | uniq -c | sort -rn
@@ -37,5 +37,3 @@ awk '{print $1}' access.log | sort -t . -k1,1n -k2,2n -k3,3n -k4,4n | uniq -c
 ...
 
 ✅ This is a quick way to find the most active IPs hitting your server.
-
-### 2. Next Here
