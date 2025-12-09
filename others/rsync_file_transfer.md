@@ -61,8 +61,8 @@ Dry Run to check what files will be transfered when we execute the cmd.
 ##### 4. Source and destination paths > /home/ubuntu/trs ubuntu@15.207.14.245:/home/ubuntu/test
 * Source: /home/ubuntu/trs
 * Destination: ubuntu@15.207.14.245:/home/ubuntu/test
-- Remote server: 15.207.14.245
-- Remote user: ubuntu
-- Remote path: /home/ubuntu/test
+ - Remote server: 15.207.14.245
+ - Remote user: ubuntu
+ - Remote path: /home/ubuntu/test
 
 ✅ rsync is a fast and flexible file transfer/synchronization tool. It copies files from a source to a destination, efficiently transferring only what’s changed.
