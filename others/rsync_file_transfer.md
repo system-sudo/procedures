@@ -20,8 +20,12 @@ rsync -avz --progress --partial --append-verify \
 ```
 DRY RUN
 ```sh
-awk '{print $1}' access.log | sort -t . -k1,1n -k2,2n -k3,3n -k4,4n | uniq -c
+rsync -avz --dry-run --progress --partial --append-verify \
+    -e "ssh -o IdentitiesOnly=yes -i /home/ubuntu/.ssh/id_ed25519" \
+    /home/ubuntu/trs ubuntu@15.207.14.245:/home/ubuntu/test
 ```
+Dry Run to check what files will be transfered when we execute the cmd.
+
 #### Step-by-Step Explanation:
 
 ##### 1. Core flags > rsync -avz --progress 
