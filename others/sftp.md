@@ -9,11 +9,21 @@ This guide explains how to create, configure, and manage SFTP-only users using a
 * Ubuntu or Debian Linux
 * OpenSSH server installed and running
 * SFTP-only group: sftpusers
-
 If not created:
 ```sh
 sudo groupadd sftpusers
 ```
+Check ssh
+```sh
+sudo systemctl status sshd
+```
+if not installed:
+```sh
+sudo apt update
+sudo apt install -y openssh-server
+sudo systemctl enable --now ssh
+```
+
 #### 2. sshd_config Settings
 Edit:
 ```sh
@@ -25,10 +35,17 @@ Subsystem sftp internal-sftp
 
 Match Group sftpusers
     ChrootDirectory /srv/sftp/%u
+    PasswordAuthentication yes
     ForceCommand internal-sftp
     X11Forwarding no
     AllowTcpForwarding no
 ```
+%u = username
+So:
+user alice → /srv/sftp/alice
+user bob → /srv/sftp/bob
+user charlie → /srv/sftp/charlie  
+
 Restart SSH after editing:
 ```sh
 sudo systemctl restart sshd
@@ -37,6 +54,7 @@ sudo systemctl restart sshd
 ```sh
 /srv/sftp/<username>       (root-owned)
 └── uploads                (user-owned)
+NO .bashrc, .profile, .ssh, or other user-owned files.
 ```
 Commands:
 ```sh
@@ -52,7 +70,7 @@ sudo chmod 700 /srv/sftp/<username>/uploads
 
 Create the user (no shell) - Replace <username> with the actual username.
 ```sh
-sudo useradd -m -d /home/<username> -s /usr/sbin/nologin -G sftpusers <username>
+sudo useradd -m -d /srv/sftp/<username> -s /usr/sbin/nologin -G sftpusers <username>
 sudo passwd <username>
 ```
 
