@@ -46,7 +46,11 @@ Test SSL from Terminal
 curl -Iv https://demo1.trstscore.com
 ```
 
-### 🔁 STEP 6 — Test automatic renewal of SSL Cert
+### 🔁 STEP 6 — Test automatic renewal of SSL Cert  
+
+You don’t need to enable certbot.timer manually. Snap’s Certbot automatically sets up a renewal service internally.  
+Directly go for DRY Run
+
 Check if certbot.timer is Active.
 ```sh
 sudo systemctl status certbot.timer
