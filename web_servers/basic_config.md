@@ -1,5 +1,9 @@
 ### To make sure the DNS resolves properly:
 ```sh
+host ocr.bellita.co.in
+```
+OR
+```sh
 dig +short prometheus.bellita.co.in
 ```
 
