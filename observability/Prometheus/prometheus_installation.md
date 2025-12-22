@@ -50,7 +50,7 @@ sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
 ### 📄 4. Create the Prometheus Service File
 Create the file:
 ```sh
-sudo vim /etc/systemd/system/prometheus.service
+sudo nano /etc/systemd/system/prometheus.service
 ```
 
 #### Paste the following content:
