@@ -77,6 +77,11 @@ sudo systemctl start node_exporter
 ```sh
 sudo systemctl status node_exporter
 ```
+#### Check the node exporter version:
+
+```sh
+/usr/local/bin/node_exporter --version
+```
 ### 6️⃣ Verify Node Exporter is Running
 #### Open in browser:
 
