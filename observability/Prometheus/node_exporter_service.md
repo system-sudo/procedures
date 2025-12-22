@@ -46,7 +46,7 @@ sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 #### Create the service unit:
 
 ```sh
-sudo vim /etc/systemd/system/node_exporter.service
+sudo nano /etc/systemd/system/node_exporter.service
 ```
 #### Paste the following:
 
