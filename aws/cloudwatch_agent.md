@@ -1,15 +1,23 @@
-
+### Mostly SSM will be pre-installed on EC2 if not then follow offcial doc:
+```sh
+https://docs.aws.amazon.com/en_us/systems-manager/latest/userguide/agent-install-ubuntu.html
+```
+### To install CloudWatch Agent
+```sh
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance.html
+```
+Install the CloudWatch agent using AWS Systems Manager (Recommended)
 
 ### Step 1: Attach the correct IAM Role
 
 1. Go to IAM → Roles
 2. Create EC2 role (eg.CloudWatchAgentServerRole)
 3. Attach this managed policy to the EC2 instance role
-  a. CloudWatchAgentServerPolicy - (if metrics/logs are needed)
-  b. AmazonSSMManagedInstanceCore - 
-4. Attach the role to your EC2 instance (⚠️ EC2 can have only one role attached at a time.)
+   a. CloudWatchAgentServerPolicy - to send metrics and logs to Amazon CloudWatch
+   b. AmazonSSMManagedInstanceCore - for AWS Systems Manager (SSM) functionality
+5. Attach the role to your EC2 instance (⚠️ EC2 can have only one role attached at a time.)
    🔹 EC2 → Instance → Actions → Security → Modify IAM role
-5. Restart the agent (once)
+6. Restart the agent (once)
 ```sh
 sudo systemctl restart snap.amazon-ssm-agent.amazon-ssm-agent
 ```
@@ -30,7 +38,6 @@ sudo journalctl -u snap.amazon-ssm-agent.amazon-ssm-agent -n 50 --no-pager
 * Instance ID: i-02090c613baf7a955
 * Status: Online
 * Ping status: Healthy
-
 
 ### Step 3: Run interactive config wizard
 ```sh
@@ -132,8 +139,7 @@ free -h
 df -h /
 ```
 
-Then compare:
-CLI values
-CloudWatch values (after 2–3 minutes)
+Then compare:  
+CLI values VS CloudWatch values
 
 If they roughly align → setup is correct.
