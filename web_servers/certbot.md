@@ -1,6 +1,8 @@
 ## Certbot installation and SSL setup steps
 
-### 🧱 STEP 1 — Install Snap and Core
+### Installation:
+###  Option 1
+#### 🧱 STEP 1a — Install Snap and Core
 ```sh
 sudo apt update -y
 sudo apt-get install -y snapd
@@ -9,7 +11,7 @@ sudo snap refresh core
 ```
 Snap ensures you always get the latest version of Certbot directly from the EFF (Let’s Encrypt team).
 
-### 🧹 STEP 2 — Remove any old Certbot installations
+### 🧹 STEP 1b — Remove any old Certbot installations
 ```sh
 sudo apt-get remove certbot
 ```
@@ -18,20 +20,21 @@ OR
 sudo apt remove -y certbot python3-certbot-nginx
 ```
 
-### ⚙️ STEP 3 — Install Certbot via Snap
+### ⚙️ STEP 1c — Install Certbot via Snap
 ```sh
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 ```
 
-### 🧰 STEP 4 — Check installation
+###  Option 2
+
+### 🧰 STEP 3 — Check installation
 ```sh
 certbot --version
 ```
 
 ### 🌐 STEP 5 — Obtain your SSL certificate (via HTTP port 80)
 
-#### 🅰️ Option 1 — Standard Nginx (no Cloudflare proxy)
 If your domain points directly to your server (if proxied by Cloudflare-Temporarily disable proxy):
 ```sh
 sudo certbot --nginx -d grafana.bellita.co.in
@@ -60,7 +63,7 @@ If not then Enable it.
 sudo systemctl enable certbot.timer
 sudo systemctl start certbot.timer
 ```
-Then Run:
+##### Then Run:
 ```sh
 sudo certbot renew --dry-run
 ```
