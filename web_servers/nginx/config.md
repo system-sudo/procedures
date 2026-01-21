@@ -55,3 +55,7 @@ sudo nginx -T | grep sites-
 ```sh
 sudo nginx -T | grep "server_name"
 ```
+### Locate main Nginx config:
+```sh
+sudo nano /etc/nginx/nginx.conf
+```
