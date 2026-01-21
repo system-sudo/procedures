@@ -25,3 +25,19 @@ Verify:
 ```sh
 sudo systemctl status php8.1-fpm
 ```
+#### PHP-FPM sizing rule:
+```sh
+pm.max_children × avg PHP process memory < 70% of RAM
+```
+List actual PHP-FPM processes:
+```sh
+ps aux | grep php-fpm | grep -v grep
+```
+Check:
+```sh
+ps -ylC php-fpm8.1 --sort:rss
+```
+If each process is ~80MB:
+```sh
+12 × 80MB = ~960MB
+```
