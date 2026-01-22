@@ -39,10 +39,17 @@ If your domain points directly to your server (if proxied by Cloudflare-Temporar
 ```sh
 sudo certbot --nginx -d grafana.bellita.co.in
 ```
-
 Certbot runs its own temporary web server (on port 80), You do not need Nginx.
 ```sh
 sudo certbot certonly --standalone
+```
+Reissue the certificate with an extra Server Name(multiple SA-N in single config/Cert:
+```sh
+certbot certonly \
+  --nginx \
+  -d apis.bellita.co.in \
+  -d back1919.bellita.co.in \
+  -d back2929.trstscore.com
 ```
 Test SSL from Terminal
 ```sh
