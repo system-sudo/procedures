@@ -17,10 +17,10 @@
 
 ### STEP 1 — Create / choose a Service Account
 Create a GCP Service Account with role Cloud SQL Client in IAM -> Service Account
-* Type: Service account
-* Principal: cloud-sql-client@trst-score.iam.gserviceaccount.com
-* Role: Cloud SQL Client
-* Platform: Google Cloud
+* **Type**     : Service account
+* **Principal**: cloud-sql-client@trst-score.iam.gserviceaccount.com
+* **Role**     : Cloud SQL Client
+* **Platform** : Google Cloud
 ### STEP 2 — Generate a service account key (JSON)
 Create a credentials file that the Cloud SQL Auth Proxy can use to authenticate as:
 ```sh
@@ -129,12 +129,11 @@ If this succeeds:
 http://<server-ip>/adminer.php
 ```
 #### 7.2 Fill the Adminer login form EXACTLY as follows
-**Field**   **Value**
-* System	 - MySQL
-* Server	 - 127.0.0.1
-* Username - howdyslimdev
-* Password - (password)
-* Database - (optional)
+* **System**	 - MySQL
+* **Server**	 - 127.0.0.1
+* **Username** - howdyslimdev
+* **Password** - (password)
+* **Database** - (optional)
 ### STEP 8 — Run Cloud SQL Auth Proxy as a systemd service
 #### 8.1 Create the systemd service file
 ```sh
