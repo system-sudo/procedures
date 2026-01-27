@@ -50,7 +50,7 @@ gcloud compute networks subnets list
 * 2 IPSec tunnels
 * Pre-shared keys
 * IKE / ESP parameters
-**Download the config — do not ignore it.**
+  **Download the config — do not ignore it.**
 ### 4️⃣ Update AWS route table
 For the subnet where RDS lives:  
 Add route:
@@ -68,7 +68,7 @@ Source: 10.160.0.0/16
 ```
 ## Step-by-step: GCP side
 ### 6️⃣ Create Cloud VPN gateway
-**GCP Console → VPN → Create VPN  **
+**GCP Console → VPN → Create VPN**
 Choose:
 * Classic VPN (simpler with AWS) OR HA VPN
 * Static routing
@@ -87,7 +87,7 @@ Local traffic selector:
 10.160.0.0/16 (GCP mumbai region CIDR)
 ```
 ### 8️⃣ Add GCP route
-**GCP Console → VPC → route  **  
+**GCP Console → VPC → route**  
 Create route:
 ```sh
 Destination: 172.31.0.0/16
