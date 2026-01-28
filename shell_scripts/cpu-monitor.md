@@ -25,7 +25,6 @@ We do read-only SQL, no config changes.
 ⚠️ This requires:
 * root socket access or
 * /root/.my.cnf with credentials
-(I’ll assume socket access since you’re root.)
 
 ### ✅ Script (production-grade)
 ```sh
@@ -105,7 +104,7 @@ MYSQL_CPU=$(ps -C mysqld -o %cpu= | awk '{sum+=$1} END {print int(sum)}')
 if [ "$MYSQL_CPU" -ge "$MYSQL_CPU_THRESHOLD" ]; then
     log "---- MySQL Context (mysqld CPU: ${MYSQL_CPU}%) ----"
 
-    mysql --batch --skip-column-names <<EOF
+    mysql --defaults-extra-file=/root/.my.cnf --batch --skip-column-names <<EOF
 SHOW FULL PROCESSLIST;
 SELECT COUNT(*) AS active_threads FROM information_schema.processlist WHERE COMMAND != 'Sleep';
 SELECT ID,USER,HOST,DB,COMMAND,TIME,STATE,LEFT(INFO,200)
